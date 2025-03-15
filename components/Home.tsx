@@ -8,27 +8,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
-const mockNews = [
-  { 
-    id: 1, 
-    title: 'Nueva campaña de ayuda humanitaria',
-    description: 'Únete a nuestra nueva iniciativa para ayudar a las comunidades necesitadas',
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&q=80'
-  },
-  { 
-    id: 2, 
-    title: 'Voluntarios necesarios para proyecto comunitario',
-    description: 'Buscamos personas comprometidas para hacer la diferencia',
-    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=500&q=80'
-  },
-  { 
-    id: 3, 
-    title: 'Resultados del último proyecto social',
-    description: 'Descubre el impacto positivo que hemos logrado juntos',
-    image: 'https://images.unsplash.com/photo-1559024020-08072b88e8ce?w=500&q=80'
-  },
-];
-
 const categories = [
   { id: 1, title: 'Educación', icon: 'school', description: 'Programas educativos' },
   { id: 2, title: 'Salud', icon: 'medical', description: 'Asistencia médica' },
@@ -40,6 +19,15 @@ export function Home() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const scrollY = React.useRef(new Animated.Value(0)).current;
+
+  const [news, setNews] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('http://localhost:3000/news')
+      .then(response => response.json())
+      .then(data => setNews(data))
+      .catch(error => console.error('Error fetching news:', error));
+  }, []);
 
   return (
     <Animated.ScrollView
@@ -60,20 +48,20 @@ export function Home() {
           decelerationRate="fast"
           snapToInterval={width - 48}
         >
-          {mockNews.map((news) => (
+          {news.map((newsItem) => (
             <TouchableOpacity
-              key={news.id}
+              key={newsItem.id}
               style={styles.newsCard}
               activeOpacity={0.9}
               onPress={() => {}}
             >
               <Image
-                source={{ uri: news.image }}
+                source={{ uri: newsItem.image }}
                 style={styles.newsImage}
               />
               <View style={styles.newsContent}>
-                <ThemedText style={styles.newsTitle}>{news.title}</ThemedText>
-                <ThemedText style={styles.newsDescription}>{news.description}</ThemedText>
+                <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
+                <ThemedText style={styles.newsDescription}>{newsItem.description}</ThemedText>
               </View>
             </TouchableOpacity>
           ))}
