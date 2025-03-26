@@ -5,6 +5,7 @@ import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { Colors } from '../constants/Colors';
 import { useColorScheme } from '../hooks/useColorScheme';
+import { useAuth } from '../contexts/AuthContext';
 
 const { width } = Dimensions.get('window');
 
@@ -45,6 +46,11 @@ const mockProjects: Project[] = [
 export function Profile() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>

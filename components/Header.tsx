@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
 import { LoginModal } from './LoginModal';
+import { useAuth } from '../contexts/AuthContext';
 
 interface HeaderProps {
   onMenuPress?: () => void;
@@ -14,10 +15,10 @@ export function Header({ onMenuPress }: HeaderProps) {
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
+  const { login, isAuthenticated, logout } = useAuth();
 
   const handleLogin = (email: string, password: string) => {
-    // Aquí implementaremos la lógica de login
-    console.log('Login attempt:', { email, password });
+    login(email, password);
     setIsLoginModalVisible(false);
   };
 
@@ -28,9 +29,20 @@ export function Header({ onMenuPress }: HeaderProps) {
         <Ionicons name="menu-outline" size={28} color={colors.text} />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => setIsLoginModalVisible(true)} style={styles.profileButton}>
-        <Ionicons name="person-circle-outline" size={28} color={colors.text} />
-      </TouchableOpacity>
+      {isAuthenticated ? (
+        <View style={styles.authButtons}>
+          <TouchableOpacity onPress={() => logout()} style={styles.profileButton}>
+            <Ionicons name="log-out-outline" size={24} color={colors.text} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.profileButton}>
+            <Ionicons name="person-circle-outline" size={28} color={colors.text} />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <TouchableOpacity onPress={() => setIsLoginModalVisible(true)} style={styles.profileButton}>
+          <Ionicons name="log-in-outline" size={24} color={colors.text} />
+        </TouchableOpacity>
+      )}
 
       <LoginModal
         visible={isLoginModalVisible}
@@ -61,5 +73,9 @@ const styles = StyleSheet.create({
 
   profileButton: {
     padding: 8,
+  },
+  authButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
