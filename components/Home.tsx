@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, ScrollView, TouchableOpacity, StyleSheet, Dimensions, Image, Animated } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Dimensions, Image, Animated, ScrollView } from 'react-native';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { Ionicons } from '@expo/vector-icons';
-
 const { width } = Dimensions.get('window');
 
 const categories = [
@@ -19,7 +18,6 @@ export function Home() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const scrollY = React.useRef(new Animated.Value(0)).current;
-
   const [news, setNews] = React.useState([]);
 
   React.useEffect(() => {
@@ -42,11 +40,9 @@ export function Home() {
         <ThemedText style={styles.sectionTitle}>Noticias Destacadas</ThemedText>
         <ScrollView
           horizontal
-          pagingEnabled
           showsHorizontalScrollIndicator={false}
-          style={styles.carousel}
-          decelerationRate="fast"
-          snapToInterval={width - 48}
+          style={styles.carouselContainer}
+          contentContainerStyle={styles.carouselContent}
         >
           {news.map((newsItem) => (
             <TouchableOpacity
@@ -75,14 +71,14 @@ export function Home() {
           {categories.map((category) => (
             <TouchableOpacity
               key={category.id}
-              style={[styles.categoryButton, { backgroundColor: colors.background }]}
+              style={[styles.categoryButton, { backgroundColor: '#2196f3' }]}
               onPress={() => {}}
             >
-              <View style={[styles.iconContainer, { backgroundColor: colors.tint }]}>
-                <Ionicons name={category.icon} size={24} color={colorScheme === 'dark' ? colors.background : '#fff'} />
+              <View style={[styles.iconContainer, { backgroundColor: '#fff' }]}>
+                <Ionicons name={category.icon} size={24} color="#2196f3" />
               </View>
-              <ThemedText style={styles.categoryTitle}>{category.title}</ThemedText>
-              <ThemedText style={styles.categoryDescription}>{category.description}</ThemedText>
+              <ThemedText style={[styles.categoryTitle, { color: '#fff' }]}>{category.title}</ThemedText>
+              <ThemedText style={[styles.categoryDescription, { color: '#fff' }]}>{category.description}</ThemedText>
             </TouchableOpacity>
           ))}
         </View>
@@ -124,11 +120,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     letterSpacing: 0.5,
   },
-  carousel: {
-    height: 280,
+
+  carouselContent: {
+    paddingHorizontal: 16,
   },
   newsCard: {
-    width: width - 48,
+    width: width - 80,
     height: 250,
     marginRight: 16,
     borderRadius: 16,
@@ -189,22 +186,36 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 4,
+    color: '#fff',
   },
   categoryDescription: {
     fontSize: 12,
     opacity: 0.7,
+    color: '#fff',
   },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  carouselContainer: {
+    height: 250,
+    position: 'relative',
     marginTop: 8,
   },
-  statCard: {
-    flex: 1,
-    margin: 4,
-    padding: 16,
-    borderRadius: 12,
+  carouselButton: {
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -20 }],
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    elevation: 5,
+  },
+  leftButton: {
+    left: 8,
+  },
+  rightButton: {
+    right: 8,
   },
   statNumber: {
     fontSize: 24,
