@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
+import { LoginModal } from './LoginModal';
 
 interface HeaderProps {
   onMenuPress?: () => void;
   onProfilePress?: () => void;
 }
 
-export function Header({ onMenuPress, onProfilePress }: HeaderProps) {
+export function Header({ onMenuPress }: HeaderProps) {
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
+
+  const handleLogin = (email: string, password: string) => {
+    // Aquí implementaremos la lógica de login
+    console.log('Login attempt:', { email, password });
+    setIsLoginModalVisible(false);
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -19,9 +27,15 @@ export function Header({ onMenuPress, onProfilePress }: HeaderProps) {
         <Ionicons name="menu-outline" size={28} color={colors.text} />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={onProfilePress} style={styles.profileButton}>
+      <TouchableOpacity onPress={() => setIsLoginModalVisible(true)} style={styles.profileButton}>
         <Ionicons name="person-circle-outline" size={28} color={colors.text} />
       </TouchableOpacity>
+
+      <LoginModal
+        visible={isLoginModalVisible}
+        onClose={() => setIsLoginModalVisible(false)}
+        onLogin={handleLogin}
+      />
     </View>
   );
 }
