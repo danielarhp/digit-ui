@@ -20,7 +20,37 @@ export function Home() {
   const scrollY = React.useRef(new Animated.Value(0)).current;
   const [news, setNews] = React.useState([]);
 
+  
   React.useEffect(() => {
+    setNews([
+      {
+          "_id": "67d5bde697156aa043d99b03",
+          "title": "Voluntarios necesarios para proyecto comunitario",
+          "description": "Buscamos personas comprometidas para hacer la diferencia",
+          "image": "https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg",
+          "__v": 0,
+          "createdAt": "2025-03-15T17:50:30.482Z",
+          "updatedAt": "2025-03-15T17:50:30.482Z"
+      },
+      {
+          "_id": "67d5bde697156aa043d99b04",
+          "title": "Resultados del último proyecto social",
+          "description": "Descubre el impacto positivo que hemos logrado juntos",
+          "image": "https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg",
+          "__v": 0,
+          "createdAt": "2025-03-15T17:50:30.482Z",
+          "updatedAt": "2025-03-15T17:50:30.482Z"
+      },
+      {
+          "_id": "67d5bde697156aa043d99b02",
+          "title": "Nueva campaña de ayuda de Danela",
+          "description": "Únete a nuestra nueva iniciativa para ayudar a las comunidades necesitadas",
+          "image": "https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg",
+          "__v": 0,
+          "createdAt": "2025-03-15T17:50:30.481Z",
+          "updatedAt": "2025-03-15T17:50:30.481Z"
+      }
+    ])
     fetch('http://localhost:3000/news')
       .then(response => response.json())
       .then(data => setNews(data))
