@@ -5,6 +5,7 @@ import { Colors } from '../constants/Colors';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import Swiper from 'react-native-swiper';
 const { width } = Dimensions.get('window');
 
@@ -45,6 +46,7 @@ const urgentProjects = [
 export function Home() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
+  const router = useRouter();
   const [news, setNews] = React.useState([]);
 
   React.useEffect(() => {
@@ -99,7 +101,7 @@ export function Home() {
               key={newsItem._id}
               style={[styles.newsCard, { width: width - 48 }]} // Adjusted width to account for margins
               activeOpacity={0.9}
-              onPress={() => {}}
+              onPress={() => router.push(`/ong?id=${newsItem.ongId || 1}`)}
             >
               <Image
                 source={{ uri: newsItem.image }}
@@ -122,7 +124,7 @@ export function Home() {
             <TouchableOpacity
               key={ong.id}
               style={styles.ongButton}
-              onPress={() => {}}
+              onPress={() => router.push(`/ong?id=${ong.id}`)}
             >
               <Image
                 source={{ uri: ong.logo }}
@@ -143,7 +145,7 @@ export function Home() {
               key={project.id}
               style={styles.projectCard}
               activeOpacity={0.9}
-              onPress={() => {}}
+              onPress={() => router.push(`/ong?id=${project.ongId || project.id}`)}
             >
               <Image
                 source={{ uri: project.image }}
