@@ -8,20 +8,45 @@ import { Ionicons } from '@expo/vector-icons';
 import Swiper from 'react-native-swiper';
 const { width } = Dimensions.get('window');
 
-const categories = [
-  { id: 1, title: 'Educación', icon: 'school', description: 'Programas educativos' },
-  { id: 2, title: 'Salud', icon: 'medical', description: 'Asistencia médica' },
-  { id: 3, title: 'Medio Ambiente', icon: 'leaf', description: 'Proyectos ecológicos' },
-  { id: 4, title: 'Comunidad', icon: 'people', description: 'Desarrollo social' },
+const ongs = [
+  { id: 1, name: 'Nadiesolo', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi69cyfoEFFwVlVCmir7FgeWgLqJQnNUMoXg&s' },
+  { id: 2, name: 'Tacumi', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjjdt0R9NwTqKHLDQFCOiIOQzpiZEg7ctD7DIwud_-mjh7-hegl0AR6A41n_WWwlLvI1I&usqp=CAU' },
+  { id: 3, name: 'Fundación Lukas', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGOHiKxeS4gDAjfQMLkzQrKeDexZZ3_y8D5w&s' },
+  { id: 4, name: 'Alpe', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR2v4Z1ZX07AEStMVbGjkFGGXU1g33wzsjVw&s' },
+];
+
+const urgentProjects = [
+  {
+    id: 1,
+    name: 'Construcción de Escuela Rural',
+    image: 'https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg',
+    targetAmount: 50000,
+    raisedAmount: 35000,
+    progress: 70
+  },
+  {
+    id: 2,
+    name: 'Programa de Alimentación Infantil',
+    image: 'https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg',
+    targetAmount: 25000,
+    raisedAmount: 15000,
+    progress: 60
+  },
+  {
+    id: 3,
+    name: 'Centro de Rehabilitación',
+    image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg',
+    targetAmount: 75000,
+    raisedAmount: 30000,
+    progress: 40
+  }
 ];
 
 export function Home() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
-  // Remove scrollY since we won't need it anymore
   const [news, setNews] = React.useState([]);
 
-  
   React.useEffect(() => {
     setNews([
       {
@@ -59,7 +84,7 @@ export function Home() {
   }, []);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
       {/* News Carousel Section */}
       <View style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Noticias Destacadas</ThemedText>
@@ -95,45 +120,65 @@ export function Home() {
         </View>
       </View>
 
-      {/* Categories Section */}
+      {/* ONGs Section */}
       <View style={styles.section}>
-        <ThemedText style={styles.sectionTitle}>Categorías</ThemedText>
-        <View style={styles.categoriesContainer}>
-          {categories.map((category) => (
+        <ThemedText style={styles.sectionTitle}>ONGs</ThemedText>
+        <View style={styles.ongsContainer}>
+          {ongs.map((ong) => (
             <TouchableOpacity
-              key={category.id}
-              style={[styles.categoryButton, { backgroundColor: '#2196f3' }]}
+              key={ong.id}
+              style={styles.ongButton}
               onPress={() => {}}
             >
-              <View style={[styles.iconContainer, { backgroundColor: '#fff' }]}>
-                <Ionicons name={category.icon} size={24} color="#2196f3" />
-              </View>
-              <ThemedText style={[styles.categoryTitle, { color: '#fff' }]}>{category.title}</ThemedText>
-              <ThemedText style={[styles.categoryDescription, { color: '#fff' }]}>{category.description}</ThemedText>
+              <Image
+                source={{ uri: ong.logo }}
+                style={styles.ongLogo}
+                resizeMode="contain"
+              />
             </TouchableOpacity>
           ))}
         </View>
       </View>
 
-      {/* Impact Stats Section */}
+      {/* Urgent Projects Section */}
       <View style={styles.section}>
-        <ThemedText style={styles.sectionTitle}>Nuestro Impacto</ThemedText>
-        <View style={styles.statsContainer}>
-          <View style={[styles.statCard, { backgroundColor: '#2196f3', borderRadius: 16 }]}>
-            <ThemedText style={[styles.statNumber, { color: '#fff' }]}>1.2K</ThemedText>
-            <ThemedText style={[styles.statLabel, { color: '#fff' }]}>Voluntarios</ThemedText>
-          </View>
-          <View style={[styles.statCard, { backgroundColor: '#2196f3', borderRadius: 16 }]}>
-            <ThemedText style={[styles.statNumber, { color: '#fff' }]}>50+</ThemedText>
-            <ThemedText style={[styles.statLabel, { color: '#fff' }]}>Proyectos</ThemedText>
-          </View>
-          <View style={[styles.statCard, { backgroundColor: '#2196f3', borderRadius: 16 }]}>
-            <ThemedText style={[styles.statNumber, { color: '#fff' }]}>10K</ThemedText>
-            <ThemedText style={[styles.statLabel, { color: '#fff' }]}>Beneficiados</ThemedText>
-          </View>
+        <ThemedText style={styles.sectionTitle}>Proyectos Urgentes</ThemedText>
+        <View style={styles.urgentProjectsContainer}>
+          {urgentProjects.map((project) => (
+            <TouchableOpacity
+              key={project.id}
+              style={styles.projectCard}
+              activeOpacity={0.9}
+              onPress={() => {}}
+            >
+              <Image
+                source={{ uri: project.image }}
+                style={styles.projectImage}
+              />
+              <View style={styles.projectContent}>
+                <ThemedText style={styles.projectTitle}>{project.name}</ThemedText>
+                <View style={styles.projectStats}>
+                  <ThemedText style={styles.projectAmount}>
+                    Meta: ${project.targetAmount.toLocaleString()}
+                  </ThemedText>
+                  <ThemedText style={styles.projectAmount}>
+                    Recaudado: ${project.raisedAmount.toLocaleString()}
+                  </ThemedText>
+                </View>
+                <View style={styles.progressBarContainer}>
+                  <View style={styles.progressBar}>
+                    <View
+                      style={[styles.progressFill, { width: `${project.progress}%` }]}
+                    />
+                  </View>
+                  <ThemedText style={styles.progressText}>{project.progress}%</ThemedText>
+                </View>
+              </View>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -215,40 +260,30 @@ const styles = StyleSheet.create({
     color: '#fff',
     opacity: 0.9,
   },
-  categoriesContainer: {
+  ongsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    gap: 16,
+    marginTop: 8,
   },
-  categoryButton: {
-    width: '47%',
-    borderRadius: 16,
-    padding: 16,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-  },
-  iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  ongButton: {
+    width: '23%',
+    aspectRatio: 1,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    marginBottom: 16,
+    padding: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  categoryTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 4,
-    color: '#fff',
-  },
-  categoryDescription: {
-    fontSize: 12,
-    opacity: 0.7,
-    color: '#fff',
+  ongLogo: {
+    width: '100%',
+    height: '100%',
   },
   carouselContainer: {
     height: 250,
@@ -274,26 +309,57 @@ const styles = StyleSheet.create({
   rightButton: {
     right: 8,
   },
-  statNumber: {
-    fontSize: 24,
+  urgentProjectsContainer: {
+    gap: 16,
+  },
+  projectCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    overflow: 'hidden',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    marginBottom: 16,
+  },
+  projectImage: {
+    width: '100%',
+    height: 200,
+  },
+  projectContent: {
+    padding: 16,
+  },
+  projectTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 4,
-  },
-  statLabel: {
-    fontSize: 12,
-    color: '#fff',
-    opacity: 0.9,
-  },
-  categoryIcon: {
-    fontSize: 24,
     marginBottom: 8,
   },
-  placeholderSection: {
-    height: 200,
-    borderRadius: 8,
-    padding: 16,
+  projectStats: {
+    marginBottom: 8,
+  },
+  projectAmount: {
+    fontSize: 14,
+    marginBottom: 4,
+  },
+  progressBarContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    gap: 8,
+  },
+  progressBar: {
+    flex: 1,
+    height: 8,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#2196f3',
+  },
+  progressText: {
+    fontSize: 12,
+    fontWeight: 'bold',
   }
 });
