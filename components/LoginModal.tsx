@@ -5,6 +5,7 @@ import { Colors } from '../constants/Colors';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { ThemedText } from './ThemedText';
 import * as Font from 'expo-font';
+import { useRouter } from 'expo-router';
 
 interface LoginModalProps {
   visible: boolean;
@@ -13,6 +14,7 @@ interface LoginModalProps {
 }
 
 export function LoginModal({ visible, onClose, onLogin }: LoginModalProps) {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailFocused, setEmailFocused] = useState(false);
@@ -42,6 +44,7 @@ export function LoginModal({ visible, onClose, onLogin }: LoginModalProps) {
     onLogin(email, password);
     setEmail('');
     setPassword('');
+    router.push('/profile');
   };
 
   return (

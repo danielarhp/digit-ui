@@ -5,6 +5,7 @@ import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
 import { LoginModal } from './LoginModal';
 import { useAuth } from '../contexts/AuthContext';
+import { useRouter } from 'expo-router';
 
 interface HeaderProps {
   onMenuPress?: () => void;
@@ -16,6 +17,7 @@ export function Header({ onMenuPress }: HeaderProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const { login, isAuthenticated, logout } = useAuth();
+  const router = useRouter();
 
   const handleLogin = (email: string, password: string) => {
     login(email, password);
@@ -31,10 +33,13 @@ export function Header({ onMenuPress }: HeaderProps) {
 
       {isAuthenticated ? (
         <View style={styles.authButtons}>
-          <TouchableOpacity onPress={() => logout()} style={styles.profileButton}>
+          <TouchableOpacity onPress={() => {
+            logout();
+            router.push('/');
+          }} style={styles.profileButton}>
             <Ionicons name="log-out-outline" size={24} color={colors.text} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.profileButton}>
+          <TouchableOpacity style={styles.profileButton} onPress={() => router.push('/profile')}>
             <Ionicons name="person-circle-outline" size={28} color={colors.text} />
           </TouchableOpacity>
         </View>

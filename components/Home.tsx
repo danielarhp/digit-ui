@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Dimensions, Image, Animated, ScrollView } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Dimensions, Image, ScrollView } from 'react-native';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
 import { ThemedText } from './ThemedText';
@@ -88,36 +88,30 @@ export function Home() {
       {/* News Carousel Section */}
       <View style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Noticias Destacadas</ThemedText>
-        <View style={styles.carouselContainer}>
-          <Swiper
-            showsButtons={true}
-            autoplay={true}
-            autoplayTimeout={5}
-            dotColor={'rgba(255,255,255,0.3)'}
-            activeDotColor={'#fff'}
-            paginationStyle={{ bottom: 10 }}
-            nextButton={<ThemedText style={{ color: '#fff', fontSize: 50 }}>›</ThemedText>}
-            prevButton={<ThemedText style={{ color: '#fff', fontSize: 50 }}>‹</ThemedText>}
-          >
-            {news.map((newsItem) => (
-              <TouchableOpacity
-                key={newsItem._id}
-                style={styles.newsCard}
-                activeOpacity={0.9}
-                onPress={() => {}}
-              >
-                <Image
-                  source={{ uri: newsItem.image }}
-                  style={styles.newsImage}
-                />
-                <View style={styles.newsContent}>
-                  <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
-                  <ThemedText style={styles.newsDescription}>{newsItem.description}</ThemedText>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </Swiper>
-        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          style={styles.carouselContainer}
+        >
+          {news.map((newsItem) => (
+            <TouchableOpacity
+              key={newsItem._id}
+              style={[styles.newsCard, { width: width - 32 }]}
+              activeOpacity={0.9}
+              onPress={() => {}}
+            >
+              <Image
+                source={{ uri: newsItem.image }}
+                style={styles.newsImage}
+              />
+              <View style={styles.newsContent}>
+                <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
+                <ThemedText style={styles.newsDescription}>{newsItem.description}</ThemedText>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
 
       {/* ONGs Section */}
