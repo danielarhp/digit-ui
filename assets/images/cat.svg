@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#4A4A4A">
+    <!-- Cabeza -->
+    <path d="M100 40 C 45 40, 40 100, 40 150 C 40 180, 160 180, 160 150 C 160 100, 155 40, 100 40" fill="#808080"/>
+    <!-- Orejas -->
+    <path d="M60 60 L 40 20 L 80 40 Z" fill="#808080"/>
+    <path d="M140 60 L 160 20 L 120 40 Z" fill="#808080"/>
+    <!-- Ojos -->
+    <ellipse cx="70" cy="90" rx="15" ry="20"/>
+    <ellipse cx="130" cy="90" rx="15" ry="20"/>
+    <!-- Brillos en los ojos -->
+    <circle cx="65" cy="85" r="5" fill="white"/>
+    <circle cx="125" cy="85" r="5" fill="white"/>
+    <!-- Nariz -->
+    <path d="M95 120 L 105 120 L 100 125 Z" fill="pink"/>
+    <!-- Bigotes -->
+    <line x1="85" y1="125" x2="45" y2="115" stroke="#4A4A4A" stroke-width="2"/>
+    <line x1="85" y1="130" x2="45" y2="130" stroke="#4A4A4A" stroke-width="2"/>
+    <line x1="85" y1="135" x2="45" y2="145" stroke="#4A4A4A" stroke-width="2"/>
+    <line x1="115" y1="125" x2="155" y2="115" stroke="#4A4A4A" stroke-width="2"/>
+    <line x1="115" y1="130" x2="155" y2="130" stroke="#4A4A4A" stroke-width="2"/>
+    <line x1="115" y1="135" x2="155" y2="145" stroke="#4A4A4A" stroke-width="2"/>
+  </g>
+</svg>

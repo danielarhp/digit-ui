@@ -5,6 +5,7 @@ import { Colors } from '../constants/Colors';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { Ionicons } from '@expo/vector-icons';
+import Swiper from 'react-native-swiper';
 const { width } = Dimensions.get('window');
 
 const categories = [
@@ -17,7 +18,7 @@ const categories = [
 export function Home() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
-  const scrollY = React.useRef(new Animated.Value(0)).current;
+  // Remove scrollY since we won't need it anymore
   const [news, setNews] = React.useState([]);
 
   
@@ -58,40 +59,40 @@ export function Home() {
   }, []);
 
   return (
-    <Animated.ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-      onScroll={Animated.event(
-        [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-        { useNativeDriver: true }
-      )}
-      scrollEventThrottle={16}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* News Carousel Section */}
       <View style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Noticias Destacadas</ThemedText>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.carouselContainer}
-          contentContainerStyle={styles.carouselContent}
-        >
-          {news.map((newsItem) => (
-            <TouchableOpacity
-              key={newsItem.id}
-              style={styles.newsCard}
-              activeOpacity={0.9}
-              onPress={() => {}}
-            >
-              <Image
-                source={{ uri: newsItem.image }}
-                style={styles.newsImage}
-              />
-              <View style={styles.newsContent}>
-                <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
-                <ThemedText style={styles.newsDescription}>{newsItem.description}</ThemedText>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        <View style={styles.carouselContainer}>
+          <Swiper
+            showsButtons={true}
+            autoplay={true}
+            autoplayTimeout={5}
+            dotColor={'rgba(255,255,255,0.3)'}
+            activeDotColor={'#fff'}
+            paginationStyle={{ bottom: 10 }}
+            nextButton={<ThemedText style={{ color: '#fff', fontSize: 50 }}>›</ThemedText>}
+            prevButton={<ThemedText style={{ color: '#fff', fontSize: 50 }}>‹</ThemedText>}
+          >
+            {news.map((newsItem) => (
+              <TouchableOpacity
+                key={newsItem._id}
+                style={styles.newsCard}
+                activeOpacity={0.9}
+                onPress={() => {}}
+              >
+                <Image
+                  source={{ uri: newsItem.image }}
+                  style={styles.newsImage}
+                />
+                <View style={styles.newsContent}>
+                  <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
+                  <ThemedText style={styles.newsDescription}>{newsItem.description}</ThemedText>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </Swiper>
+        </View>
       </View>
 
       {/* Categories Section */}
@@ -118,21 +119,21 @@ export function Home() {
       <View style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Nuestro Impacto</ThemedText>
         <View style={styles.statsContainer}>
-          <View style={[styles.statCard, { backgroundColor: colors.tint }]}>
-            <ThemedText style={styles.statNumber}>1.2K</ThemedText>
-            <ThemedText style={styles.statLabel}>Voluntarios</ThemedText>
+          <View style={[styles.statCard, { backgroundColor: '#2196f3', borderRadius: 16 }]}>
+            <ThemedText style={[styles.statNumber, { color: '#fff' }]}>1.2K</ThemedText>
+            <ThemedText style={[styles.statLabel, { color: '#fff' }]}>Voluntarios</ThemedText>
           </View>
-          <View style={[styles.statCard, { backgroundColor: colors.tint }]}>
-            <ThemedText style={styles.statNumber}>50+</ThemedText>
-            <ThemedText style={styles.statLabel}>Proyectos</ThemedText>
+          <View style={[styles.statCard, { backgroundColor: '#2196f3', borderRadius: 16 }]}>
+            <ThemedText style={[styles.statNumber, { color: '#fff' }]}>50+</ThemedText>
+            <ThemedText style={[styles.statLabel, { color: '#fff' }]}>Proyectos</ThemedText>
           </View>
-          <View style={[styles.statCard, { backgroundColor: colors.tint }]}>
-            <ThemedText style={styles.statNumber}>10K</ThemedText>
-            <ThemedText style={styles.statLabel}>Beneficiados</ThemedText>
+          <View style={[styles.statCard, { backgroundColor: '#2196f3', borderRadius: 16 }]}>
+            <ThemedText style={[styles.statNumber, { color: '#fff' }]}>10K</ThemedText>
+            <ThemedText style={[styles.statLabel, { color: '#fff' }]}>Beneficiados</ThemedText>
           </View>
         </View>
       </View>
-    </Animated.ScrollView>
+    </View>
   );
 }
 
@@ -151,13 +152,39 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
 
+  // Remove these unused styles
   carouselContent: {
     paddingHorizontal: 16,
   },
-  newsCard: {
-    width: width - 80,
+  carouselButton: {
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -20 }],
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    elevation: 5,
+  },
+  leftButton: {
+    left: 8,
+  },
+  rightButton: {
+    right: 8,
+  },
+
+  // Update carouselContainer style
+  carouselContainer: {
     height: 250,
-    marginRight: 16,
+    marginTop: 8,
+  },
+
+  // Update newsCard style
+  newsCard: {
+    flex: 1,
     borderRadius: 16,
     overflow: 'hidden',
     elevation: 3,
