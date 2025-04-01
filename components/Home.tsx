@@ -97,7 +97,7 @@ export function Home() {
           {news.map((newsItem) => (
             <TouchableOpacity
               key={newsItem._id}
-              style={[styles.newsCard, { width: width - 32 }]}
+              style={[styles.newsCard, { width: width - 48 }]} // Adjusted width to account for margins
               activeOpacity={0.9}
               onPress={() => {}}
             >
@@ -231,6 +231,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    marginHorizontal: 8, // Add horizontal margin between cards
   },
   newsImage: {
     width: '100%',
