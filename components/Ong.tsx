@@ -29,11 +29,15 @@ export function Ong() {
         <Image source={{ uri: ong.logo }} style={styles.logo} resizeMode="contain" />
         <ThemedText style={styles.title}>{ong.name}</ThemedText>
         <TouchableOpacity
-          style={[styles.subscribeButton, { backgroundColor: isSubscribed ? colors.border : colors.tint }]}
+          style={[styles.subscribeButton, { 
+            backgroundColor: isSubscribed ? 'transparent' : colors.tint,
+            borderWidth: isSubscribed ? 2 : 0,
+            borderColor: isSubscribed ? colors.tint : 'transparent'
+          }]}
           onPress={handleSubscribe}
         >
-          <Ionicons name={isSubscribed ? 'checkmark' : 'add'} size={24} color="white" />
-          <ThemedText style={styles.subscribeButtonText}>
+          <Ionicons name={isSubscribed ? 'checkmark' : 'add'} size={24} color={isSubscribed ? colors.tint : 'white'} />
+          <ThemedText style={[styles.subscribeButtonText, { color: isSubscribed ? colors.tint : 'white' }]}>
             {isSubscribed ? 'Suscrito' : 'Suscribirse'}
           </ThemedText>
         </TouchableOpacity>
