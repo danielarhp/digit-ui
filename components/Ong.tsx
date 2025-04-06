@@ -8,6 +8,9 @@ import { ongData } from '../constants/OngData';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 import { EmailSubscriptionModal } from './EmailSubscriptionModal';
+import { EmailUnsubscribeModal } from './EmailUnsubscribeModal';
+import { LoginModal } from './LoginModal';
+import { useAuth } from '../contexts/AuthContext';
 
 const { width } = Dimensions.get('window');
 
@@ -15,19 +18,38 @@ export function Ong() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isEmailSubscribed, setIsEmailSubscribed] = useState(false);
   const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
+  const [isEmailUnsubscribeModalVisible, setIsEmailUnsubscribeModalVisible] = useState(false);
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const { isAuthenticated, login } = useAuth();
   
   const { id } = useLocalSearchParams();
   const ong = ongData.find(o => o.id === Number(id)) || ongData[0];
 
   const handleSubscribe = () => {
-    setIsSubscribed(!isSubscribed);
+    if (isAuthenticated) {
+      setIsSubscribed(!isSubscribed);
+    } else {
+      setIsLoginModalVisible(true);
+    }
   };
   
   const handleEmailSubscribe = () => {
     // Aquí se podría implementar la lógica para suscribirse por email
     console.log('Usuario suscrito por email a', ong.name);
-    setIsSubscribed(true);
+    setIsEmailSubscribed(true);
+  };
+  
+  const handleEmailUnsubscribe = () => {
+    // Aquí se podría implementar la lógica para desuscribirse del email
+    console.log('Usuario desuscrito del email de', ong.name);
+    setIsEmailSubscribed(false);
+  };
+
+  const handleLogin = (email: string, password: string) => {
+    login(email, password);
+    setIsLoginModalVisible(false);
   };
 
   return (
@@ -51,10 +73,26 @@ export function Ong() {
             </ThemedText>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.emailButton, { backgroundColor: colors.tint }]}
-            onPress={() => setIsEmailModalVisible(true)}
+            style={[styles.emailButton, { 
+              backgroundColor: isEmailSubscribed ? 'transparent' : colors.tint,
+              borderWidth: isEmailSubscribed ? 2 : 0,
+              borderColor: isEmailSubscribed ? colors.tint : 'transparent'
+            }]}
+            onPress={() => {
+              if (!isAuthenticated) {
+                setIsLoginModalVisible(true);
+              } else if (isEmailSubscribed) {
+                setIsEmailUnsubscribeModalVisible(true);
+              } else {
+                setIsEmailModalVisible(true);
+              }
+            }}
           >
-            <Ionicons name="mail-outline" size={24} color="white" />
+            <Ionicons 
+              name={isEmailSubscribed ? "mail" : "mail-outline"} 
+              size={24} 
+              color={isEmailSubscribed ? colors.tint : "white"} 
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -127,6 +165,21 @@ export function Ong() {
         onClose={() => setIsEmailModalVisible(false)}
         onSubscribe={handleEmailSubscribe}
         ongName={ong.name}
+      />
+
+      {/* Email Unsubscribe Modal */}
+      <EmailUnsubscribeModal
+        visible={isEmailUnsubscribeModalVisible}
+        onClose={() => setIsEmailUnsubscribeModalVisible(false)}
+        onUnsubscribe={handleEmailUnsubscribe}
+        ongName={ong.name}
+      />
+
+      {/* Login Modal */}
+      <LoginModal
+        visible={isLoginModalVisible}
+        onClose={() => setIsLoginModalVisible(false)}
+        onLogin={handleLogin}
       />
     </ScrollView>
   );
