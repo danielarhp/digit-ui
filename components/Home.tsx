@@ -86,26 +86,40 @@ export function Home() {
   }, []);
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScrollView 
+      style={[styles.container, { backgroundColor: colors.background }]}
+      accessibilityRole="main"
+      accessibilityLabel="Página principal"
+    >
       {/* News Carousel Section */}
-      <View style={styles.section}>
-        <ThemedText style={styles.sectionTitle}>Noticias Destacadas</ThemedText>
+      <View 
+        style={styles.section}
+        accessibilityRole="region"
+        accessibilityLabel="Noticias Destacadas"
+      >
+        <ThemedText style={styles.sectionTitle} accessibilityRole="header">Noticias Destacadas</ThemedText>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           style={styles.carouselContainer}
+          accessibilityRole="list"
         >
           {news.map((newsItem) => (
             <TouchableOpacity
               key={newsItem._id}
-              style={[styles.newsCard, { width: width - 48 }]} // Adjusted width to account for margins
+              style={[styles.newsCard, { width: width - 48 }]}
               activeOpacity={0.9}
               onPress={() => router.push(`/ong?id=${newsItem.ongId || 1}`)}
+              accessibilityRole="button"
+              accessibilityLabel={`Noticia: ${newsItem.title}`}
+              accessibilityHint={`Pulsa para ver más detalles sobre ${newsItem.title}`}
             >
               <Image
                 source={{ uri: newsItem.image }}
                 style={styles.newsImage}
+                accessibilityRole="image"
+                accessibilityLabel={newsItem.title}
               />
               <View style={styles.newsContent}>
                 <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
@@ -117,19 +131,31 @@ export function Home() {
       </View>
 
       {/* ONGs Section */}
-      <View style={styles.section}>
-        <ThemedText style={styles.sectionTitle}>ONGs</ThemedText>
-        <View style={styles.ongsContainer}>
+      <View 
+        style={styles.section}
+        accessibilityRole="region"
+        accessibilityLabel="Organizaciones No Gubernamentales"
+      >
+        <ThemedText style={styles.sectionTitle} accessibilityRole="header">ONGs</ThemedText>
+        <View 
+          style={styles.ongsContainer}
+          accessibilityRole="list"
+        >
           {ongs.map((ong) => (
             <TouchableOpacity
               key={ong.id}
               style={styles.ongButton}
               onPress={() => router.push(`/ong?id=${ong.id}`)}
+              accessibilityRole="button"
+              accessibilityLabel={`ONG ${ong.name}`}
+              accessibilityHint={`Pulsa para ver más información sobre ${ong.name}`}
             >
               <Image
                 source={{ uri: ong.logo }}
                 style={styles.ongLogo}
                 resizeMode="contain"
+                accessibilityRole="image"
+                accessibilityLabel={`Logo de ${ong.name}`}
               />
             </TouchableOpacity>
           ))}
@@ -137,23 +163,39 @@ export function Home() {
       </View>
 
       {/* Urgent Projects Section */}
-      <View style={styles.section}>
-        <ThemedText style={styles.sectionTitle}>Proyectos Urgentes</ThemedText>
-        <View style={styles.urgentProjectsContainer}>
+      <View 
+        style={styles.section}
+        accessibilityRole="region"
+        accessibilityLabel="Proyectos Urgentes"
+      >
+        <ThemedText style={styles.sectionTitle} accessibilityRole="header">Proyectos Urgentes</ThemedText>
+        <View 
+          style={styles.urgentProjectsContainer}
+          accessibilityRole="list"
+        >
           {urgentProjects.map((project) => (
             <TouchableOpacity
               key={project.id}
               style={styles.projectCard}
               activeOpacity={0.9}
               onPress={() => router.push(`/ong?id=${project.ongId || project.id}`)}
+              accessibilityRole="button"
+              accessibilityLabel={`Proyecto: ${project.name}`}
+              accessibilityHint={`Pulsa para ver más detalles sobre ${project.name}`}
             >
               <Image
                 source={{ uri: project.image }}
                 style={styles.projectImage}
+                accessibilityRole="image"
+                accessibilityLabel={`Imagen del proyecto ${project.name}`}
               />
               <View style={styles.projectContent}>
                 <ThemedText style={styles.projectTitle}>{project.name}</ThemedText>
-                <View style={styles.projectStats}>
+                <View 
+                  style={styles.projectStats}
+                  accessibilityRole="text"
+                  accessibilityLabel={`Meta: ${project.targetAmount.toLocaleString()} dólares. Recaudado: ${project.raisedAmount.toLocaleString()} dólares`}
+                >
                   <ThemedText style={styles.projectAmount}>
                     Meta: ${project.targetAmount.toLocaleString()}
                   </ThemedText>
@@ -161,7 +203,16 @@ export function Home() {
                     Recaudado: ${project.raisedAmount.toLocaleString()}
                   </ThemedText>
                 </View>
-                <View style={styles.progressBarContainer}>
+                <View 
+                  style={styles.progressBarContainer}
+                  accessibilityRole="progressbar"
+                  accessibilityLabel={`Progreso: ${project.progress}%`}
+                  accessibilityValue={{
+                    min: 0,
+                    max: 100,
+                    now: project.progress,
+                  }}
+                >
                   <View style={styles.progressBar}>
                     <View
                       style={[styles.progressFill, { width: `${project.progress}%` }]}
@@ -246,16 +297,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
+  // Update styles for better accessibility
   newsTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 8,
+    // Ensure minimum contrast ratio of 4.5:1
+    textShadow: '0px 0px 4px rgba(0,0,0,0.8)',
   },
   newsDescription: {
     fontSize: 14,
     color: '#fff',
     opacity: 0.9,
+    // Ensure minimum contrast ratio of 4.5:1
+    textShadow: '0px 0px 4px rgba(0,0,0,0.8)',
   },
   ongsContainer: {
     flexDirection: 'row',
@@ -353,7 +409,8 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
-    backgroundColor: '#2196f3',
+    // Use a more accessible blue color with better contrast
+    backgroundColor: '#0056b3',
   },
   progressText: {
     fontSize: 12,
