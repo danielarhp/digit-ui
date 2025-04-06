@@ -28,19 +28,27 @@ export function Ong() {
       <View style={styles.header}>
         <Image source={{ uri: ong.logo }} style={styles.logo} resizeMode="contain" />
         <ThemedText style={styles.title}>{ong.name}</ThemedText>
-        <TouchableOpacity
-          style={[styles.subscribeButton, { 
-            backgroundColor: isSubscribed ? 'transparent' : colors.tint,
-            borderWidth: isSubscribed ? 2 : 0,
-            borderColor: isSubscribed ? colors.tint : 'transparent'
-          }]}
-          onPress={handleSubscribe}
-        >
-          <Ionicons name={isSubscribed ? 'checkmark' : 'add'} size={24} color={isSubscribed ? colors.tint : 'white'} />
-          <ThemedText style={[styles.subscribeButtonText, { color: isSubscribed ? colors.tint : 'white' }]}>
-            {isSubscribed ? 'Suscrito' : 'Suscribirse'}
-          </ThemedText>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.subscribeButton, { 
+              backgroundColor: isSubscribed ? 'transparent' : colors.tint,
+              borderWidth: isSubscribed ? 2 : 0,
+              borderColor: isSubscribed ? colors.tint : 'transparent'
+            }]}
+            onPress={handleSubscribe}
+          >
+            <Ionicons name={isSubscribed ? 'checkmark' : 'add'} size={24} color={isSubscribed ? colors.tint : 'white'} />
+            <ThemedText style={[styles.subscribeButtonText, { color: isSubscribed ? colors.tint : 'white' }]}>
+              {isSubscribed ? 'Suscrito' : 'Suscribirse'}
+            </ThemedText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.emailButton, { backgroundColor: colors.tint }]}
+            onPress={() => console.log('Email button pressed')}
+          >
+            <Ionicons name="mail-outline" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Description Section */}
@@ -128,6 +136,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
   subscribeButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -139,6 +153,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     marginLeft: 8,
+  },
+  emailButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
   },
   section: {
     padding: 20,
