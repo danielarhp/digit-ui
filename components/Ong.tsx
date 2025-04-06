@@ -7,6 +7,7 @@ import { useColorScheme } from '../hooks/useColorScheme';
 import { ongData } from '../constants/OngData';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
+import { EmailSubscriptionModal } from './EmailSubscriptionModal';
 
 const { width } = Dimensions.get('window');
 
@@ -14,12 +15,19 @@ export function Ong() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
   
   const { id } = useLocalSearchParams();
   const ong = ongData.find(o => o.id === Number(id)) || ongData[0];
 
   const handleSubscribe = () => {
     setIsSubscribed(!isSubscribed);
+  };
+  
+  const handleEmailSubscribe = () => {
+    // Aquí se podría implementar la lógica para suscribirse por email
+    console.log('Usuario suscrito por email a', ong.name);
+    setIsSubscribed(true);
   };
 
   return (
@@ -44,7 +52,7 @@ export function Ong() {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.emailButton, { backgroundColor: colors.tint }]}
-            onPress={() => console.log('Email button pressed')}
+            onPress={() => setIsEmailModalVisible(true)}
           >
             <Ionicons name="mail-outline" size={24} color="white" />
           </TouchableOpacity>
@@ -112,6 +120,14 @@ export function Ong() {
           </View>
         ))}
       </View>
+      
+      {/* Email Subscription Modal */}
+      <EmailSubscriptionModal
+        visible={isEmailModalVisible}
+        onClose={() => setIsEmailModalVisible(false)}
+        onSubscribe={handleEmailSubscribe}
+        ongName={ong.name}
+      />
     </ScrollView>
   );
 }
