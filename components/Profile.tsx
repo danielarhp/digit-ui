@@ -76,16 +76,16 @@ export function Profile() {
       {/* Statistics Section */}
       <View style={styles.statsContainer}>
         <View style={[styles.statCard, { backgroundColor: colors.tint }]}>
-          <ThemedText style={[styles.statNumber, { color: colors.text }]}>"$1,500"</ThemedText>
-          <ThemedText style={[styles.statLabel, { color: colors.text }]}>Total Donado</ThemedText>
+          <ThemedText style={[styles.statNumber, { color: colors.background }]}>"$1,500"</ThemedText>
+          <ThemedText style={[styles.statLabel, { color: colors.background }]}>Total Donado</ThemedText>
         </View>
         <View style={[styles.statCard, { backgroundColor: colors.tint }]}>
-          <ThemedText style={[styles.statNumber, { color: colors.text }]}>5</ThemedText>
-          <ThemedText style={[styles.statLabel, { color: colors.text }]}>Proyectos</ThemedText>
+          <ThemedText style={[styles.statNumber, { color: colors.background }]}>5</ThemedText>
+          <ThemedText style={[styles.statLabel, { color: colors.background }]}>Proyectos</ThemedText>
         </View>
         <View style={[styles.statCard, { backgroundColor: colors.tint }]}>
-          <ThemedText style={[styles.statNumber, { color: colors.text }]}>2023</ThemedText>
-          <ThemedText style={[styles.statLabel, { color: colors.text }]}>Miembro desde</ThemedText>
+          <ThemedText style={[styles.statNumber, { color: colors.background }]}>2023</ThemedText>
+          <ThemedText style={[styles.statLabel, { color: colors.background }]}>Miembro desde</ThemedText>
         </View>
       </View>
 
