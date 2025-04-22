@@ -29,18 +29,10 @@ export default function RootLayout() {
     return null;
   }
 
-  const handleMenuPress = () => {
-    // Handle menu press
-  };
-
-  const handleProfilePress = () => {
-    // Handle profile press
-  };
-
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AuthProvider>
-        <Header onMenuPress={handleMenuPress} onProfilePress={handleProfilePress} />
+        <Header />
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />

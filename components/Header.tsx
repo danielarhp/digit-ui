@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
 import { LoginModal } from './LoginModal';
+import { SideMenu } from './SideMenu';
 import { useAuth } from '../contexts/AuthContext';
 import { useRouter } from 'expo-router';
 
@@ -12,8 +13,10 @@ interface HeaderProps {
   onProfilePress?: () => void;
 }
 
-export function Header({ onMenuPress }: HeaderProps) {
+export function Header({}: HeaderProps) {
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('Español');
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const { login, isAuthenticated, logout } = useAuth();
@@ -27,7 +30,7 @@ export function Header({ onMenuPress }: HeaderProps) {
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
       <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <TouchableOpacity onPress={onMenuPress} style={styles.menuButton}>
+      <TouchableOpacity onPress={() => setIsSideMenuVisible(true)} style={styles.menuButton}>
         <Ionicons name="menu-outline" size={28} color={colors.text} />
       </TouchableOpacity>
 
@@ -53,6 +56,13 @@ export function Header({ onMenuPress }: HeaderProps) {
         visible={isLoginModalVisible}
         onClose={() => setIsLoginModalVisible(false)}
         onLogin={handleLogin}
+      />
+      
+      <SideMenu
+        visible={isSideMenuVisible}
+        onClose={() => setIsSideMenuVisible(false)}
+        onLanguageChange={() => setCurrentLanguage(currentLanguage === 'Español' ? 'English' : 'Español')}
+        currentLanguage={currentLanguage}
       />
     </View>
     </SafeAreaView>
