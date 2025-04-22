@@ -13,7 +13,7 @@ const ongs = [
   { id: 1, name: 'Nadiesolo', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi69cyfoEFFwVlVCmir7FgeWgLqJQnNUMoXg&s' },
   { id: 2, name: 'Tacumi', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjjdt0R9NwTqKHLDQFCOiIOQzpiZEg7ctD7DIwud_-mjh7-hegl0AR6A41n_WWwlLvI1I&usqp=CAU' },
   { id: 3, name: 'Fundación Lukas', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGOHiKxeS4gDAjfQMLkzQrKeDexZZ3_y8D5w&s' },
-  { id: 4, name: 'Alpe', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR2v4Z1ZX07AEStMVbGjkFGGXU1g33wzsjVw&s' },
+  { id: 5, name: 'Alpe', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR2v4Z1ZX07AEStMVbGjkFGGXU1g33wzsjVw&s' }, // <-- CORREGIDO: Cambiado id de 4 a 5
 ];
 
 const urgentProjects = [
@@ -110,6 +110,7 @@ export function Home() {
               key={newsItem._id}
               style={[styles.newsCard, { width: width - 48 }]}
               activeOpacity={0.9}
+              // ¡OJO! Si newsItem.ongId no existe, usa 1 (Nadiesolo)
               onPress={() => router.push(`/ong?id=${newsItem.ongId || 1}`)}
               accessibilityRole="button"
               accessibilityLabel={`Noticia: ${newsItem.title}`}
@@ -141,10 +142,11 @@ export function Home() {
           style={styles.ongsContainer}
           accessibilityRole="list"
         >
-          {ongs.map((ong) => (
+          {ongs.map((ong) => ( // Itera sobre el array ongs actualizado
             <TouchableOpacity
               key={ong.id}
               style={styles.ongButton}
+              // Ahora se enviará id=5 para Alpe, que coincide con OngData.ts
               onPress={() => router.push(`/ong?id=${ong.id}`)}
               accessibilityRole="button"
               accessibilityLabel={`ONG ${ong.name}`}
@@ -178,7 +180,10 @@ export function Home() {
               key={project.id}
               style={styles.projectCard}
               activeOpacity={0.9}
-              onPress={() => router.push(`/ong?id=${project.ongId || project.id}`)}
+              // --- CORRECCIÓN AQUÍ ---
+              // Cambiamos la ruta de /ong a /project y usamos project.id
+              onPress={() => router.push(`/project?id=${project.id}`)} 
+              // --- FIN DE LA CORRECCIÓN ---
               accessibilityRole="button"
               accessibilityLabel={`Proyecto: ${project.name}`}
               accessibilityHint={`Pulsa para ver más detalles sobre ${project.name}`}

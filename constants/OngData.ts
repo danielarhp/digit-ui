@@ -75,20 +75,40 @@ export const ongData: Ong[] = [
     id: 3,
     name: 'Fundación Lukas',
     logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGOHiKxeS4gDAjfQMLkzQrKeDexZZ3_y8D5w&s',
-    description: 'Tacumi es una ONG dedicada a promover el desarrollo sostenible y la conservación del medio ambiente a través de proyectos innovadores y educación ambiental.',
-    mission: 'Impulsar el desarrollo sostenible y la protección del medio ambiente.',
-    vision: 'Ser líderes en la promoción de la sostenibilidad y la conciencia ambiental.',
-    projects: [
+    description: 'Fundación Lukas trabaja para mejorar la calidad de vida de niños y jóvenes con discapacidad múltiple severa y sus familias, ofreciendo apoyo integral y recursos especializados.',
+    mission: 'Proporcionar atención especializada y apoyo integral a niños y jóvenes con discapacidades múltiples severas y a sus familias para mejorar su bienestar y desarrollo.',
+    vision: 'Ser un centro de referencia en la atención a la discapacidad múltiple severa, promoviendo la inclusión y la mejora continua de la calidad de vida de los beneficiarios.',
+    projects: [ // Puedes actualizar los proyectos si tienes la información correcta
       {
-        id: 3,
-        name: 'Centro de Rehabilitación',
-        image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg',
-        targetAmount: 75000,
-        raisedAmount: 30000,
-        progress: 40,
-        description: 'Centro de rehabilitación para personas con discapacidad física.'
+        id: 3, // Asegúrate de que los IDs de proyecto sean únicos si es necesario
+        name: 'Centro de Día Especializado',
+        image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg', // Reemplazar con imagen relevante
+        targetAmount: 80000,
+        raisedAmount: 45000,
+        progress: 56,
+        description: 'Centro de día para ofrecer terapias y actividades adaptadas a jóvenes con discapacidad múltiple.'
       }
     ],
-    subscribers: 800
+    subscribers: 950 // Puedes actualizar el número de suscriptores
+  },
+  { // Nueva entrada para Alpe
+    id: 5, // Nuevo ID único
+    name: 'Alpe',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR2v4Z1ZX07AEStMVbGjkFGGXU1g33wzsjVw&s', // Logo de marcador de posición
+    description: 'Alpe es una organización dedicada a la protección de ecosistemas montañosos y al apoyo de las comunidades locales que dependen de ellos.',
+    mission: 'Conservar la biodiversidad de las regiones alpinas y promover el desarrollo sostenible de sus comunidades.',
+    vision: 'Un futuro donde los ecosistemas de montaña prosperen y las comunidades locales vivan en armonía con su entorno.',
+    projects: [
+      {
+        id: 5, // Nuevo ID de proyecto único
+        name: 'Reforestación Alpina',
+        image: 'https://i.postimg.cc/pX5g7jJc/Mountain-landscape-with-pine-trees-and-a-clear-blue.jpg', // Imagen de marcador de posición
+        targetAmount: 60000,
+        raisedAmount: 20000,
+        progress: 33,
+        description: 'Proyecto de reforestación para restaurar áreas degradadas en zonas de alta montaña.'
+      }
+    ],
+    subscribers: 750 // Número de suscriptores de ejemplo
   }
 ];
