@@ -136,7 +136,7 @@ export function Home() {
               <Image
                 source={{ uri: ong.logo }}
                 style={styles.ongLogo}
-                resizeMode="contain"
+                resizeMode="cover" // Cambiado de "contain" a "cover"
                 accessibilityRole="image"
                 accessibilityLabel={t('home.ongLogoAccessibilityLabel', { name: ong.name })} // Example translation
               />
@@ -264,25 +264,28 @@ const styles = StyleSheet.create({
   // ONGs Section Styles
   ongsContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap', // Allows logos to wrap to the next line
-    justifyContent: 'space-around', // Distributes space
+    flexWrap: 'wrap', // Permite que los logos pasen a la siguiente línea
+    justifyContent: 'space-around', // Distribuye el espacio alrededor de los logos
     alignItems: 'center',
+    // paddingHorizontal: 8, // Puedes descomentar y ajustar si necesitas más espacio lateral
   },
   ongButton: {
-    width: 80, // Fixed width for each logo
-    height: 80, // Fixed height
-    margin: 8, // Space around each logo
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 40, // Circle
-    backgroundColor: '#f0f0f0', // Light background
-    overflow: 'hidden', // To contain the image
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
+    width: 130, // Aumentado de 120 a 130
+    height: 130, // Aumentado de 120 a 130
+    margin: 14, // Ajustado el margen para el nuevo tamaño
+    justifyContent: 'center', // Centra la imagen verticalmente dentro del botón
+    alignItems: 'center', // Centra la imagen horizontalmente dentro del botón
+    // Mantenemos el recuadro del botón
+    backgroundColor: '#f0f0f0', // Fondo claro
+    overflow: 'hidden', // Necesario para que el borderRadius recorte la imagen
+    borderWidth: 1, // Borde
+    borderColor: '#e0e0e0', // Color del borde
+    borderRadius: 8, // Esquinas ligeramente redondeadas (ajústalo o elimínalo si quieres esquinas rectas)
   },
   ongLogo: {
-    width: '80%', // Image takes up most of the button
-    height: '80%',
+    width: '100%', // La imagen ocupa todo el ancho del botón
+    height: '100%', // La imagen ocupa todo el alto del botón
+    // resizeMode: 'cover' ya está en las props del componente
   },
   // Urgent Projects Styles
   urgentProjectsContainer: {
