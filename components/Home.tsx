@@ -138,16 +138,7 @@ export function Home() {
           ))}
         </ScrollView>
         {/* Opcional: Botón para ver todas las noticias */}
-        <TouchableOpacity
-          style={styles.seeAllButton}
-          // --- CAMBIO AQUÍ (si existe este botón y quieres que lleve a la lista) ---
-          // Asegúrate que este botón lleve a la pantalla correcta si es necesario
-          // Si '/news' es la pantalla de lista, está bien. Si es la de detalle, ajusta.
-          onPress={() => router.push('/news')} // Ajusta si '/news' debe ser la lista general
-          // --- FIN DEL CAMBIO ---
-        >
-          <ThemedText style={styles.seeAllButtonText}>Ver todas las noticias</ThemedText>
-        </TouchableOpacity>
+    
       </View>
 
       {/* ONGs Section */}

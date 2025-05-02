@@ -120,7 +120,13 @@ export default function NewsScreen() {
   if (newsItem) {
     return (
       <>
-        <Stack.Screen options={{ title: newsItem.title }} />
+        <Stack.Screen
+          options={{
+            title: newsItem.title,
+            headerStyle: { backgroundColor: '#2196f3' }, // Cambiado a azul
+            headerTintColor: '#fff', // Cambiado a blanco
+          }}
+        />
         <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
           <Image source={{ uri: newsItem.image }} style={styles.image} />
           <View style={styles.content}>
@@ -139,7 +145,14 @@ export default function NewsScreen() {
     // Podría ser una lista de todas las noticias, un mensaje, etc.
     return (
        <ThemedView style={styles.container}>
-         <Stack.Screen options={{ title: "Noticias" }} />
+         <Stack.Screen
+           options={{
+             title: newsItem ? newsItem.title : "Noticias",
+             headerStyle: { backgroundColor: '#2196f3' }, // Estilo del fondo
+             headerTintColor: '#fff', // Estilo del texto y del botón de retroceso (si aparece)
+             // No estamos configurando headerBackVisible: false, así que debería mostrarse por defecto si hay a dónde volver.
+           }}
+         />
          <ThemedText style={styles.title}>Noticias</ThemedText>
          <ThemedText>Aquí se mostraría la lista de noticias.</ThemedText>
          {/* Aquí podrías mapear y mostrar una lista de noticias si las cargas */}

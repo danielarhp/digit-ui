@@ -9,9 +9,9 @@ export default function OngScreen() {
           title: 'ONG',
           headerShown: true,
           headerStyle: {
-            backgroundColor: 'white'
+            backgroundColor: '#2196f3' // Fondo azul
           },
-          headerTintColor: '#2196f3',  // Adding blue color for header text
+          headerTintColor: '#fff',  // Texto y botones blancos
         }}
       />
       <Ong />
