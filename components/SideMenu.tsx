@@ -6,21 +6,24 @@ import { useColorScheme } from '../hooks/useColorScheme';
 import { Colors } from '../constants/Colors';
 import { ThemedText } from './ThemedText';
 import { useAuth } from '../contexts/AuthContext';
+import { useTranslation } from 'react-i18next'; // Importa el hook
 
+// Ya no necesitas pasar translations ni languageButtonText como props
 interface SideMenuProps {
   visible: boolean;
   onClose: () => void;
+  // onLanguageChange sigue siendo necesaria para disparar el cambio
   onLanguageChange: () => void;
-  currentLanguage: string;
 }
 
-export function SideMenu({ visible, onClose, onLanguageChange, currentLanguage }: SideMenuProps) {
+export function SideMenu({ visible, onClose, onLanguageChange }: SideMenuProps) {
+  const { t, i18n } = useTranslation(); // Usa el hook
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme];
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const screenWidth = Dimensions.get('window').width;
-  const menuWidth = screenWidth * 0.75; // El menú ocupará el 75% del ancho de la pantalla
+  const menuWidth = screenWidth * 0.75;
   const slideAnim = React.useRef(new Animated.Value(-menuWidth)).current;
 
   React.useEffect(() => {
@@ -46,6 +49,10 @@ export function SideMenu({ visible, onClose, onLanguageChange, currentLanguage }
 
   if (!visible) return null;
 
+  // Determina el texto del botón de cambio de idioma
+  const nextLanguage = i18n.language === 'es' ? 'en' : 'es';
+  const languageButtonText = `${t('menu.language')}: ${t(`menu.switchTo`, { lng: nextLanguage })}`; // Obtén la traducción dinámicamente
+
   return (
     <Modal
       transparent={true}
@@ -55,14 +62,14 @@ export function SideMenu({ visible, onClose, onLanguageChange, currentLanguage }
     >
       <View style={styles.overlay}>
         <TouchableOpacity style={styles.overlayTouchable} onPress={onClose} />
-        
-        <Animated.View 
+
+        <Animated.View
           style={[
-            styles.menuContainer, 
-            { 
+            styles.menuContainer,
+            {
               backgroundColor: colors.background,
               width: menuWidth,
-              transform: [{ translateX: slideAnim }] 
+              transform: [{ translateX: slideAnim }]
             }
           ]}
         >
@@ -73,32 +80,33 @@ export function SideMenu({ visible, onClose, onLanguageChange, currentLanguage }
           </View>
 
           <View style={styles.menuItems}>
-            <TouchableOpacity 
-              style={styles.menuItem} 
+            <TouchableOpacity
+              style={styles.menuItem}
               onPress={() => handleNavigation('/')}
             >
               <Ionicons name="home-outline" size={24} color={colors.text} style={styles.menuIcon} />
-              <ThemedText style={styles.menuText}>Inicio</ThemedText>
+              {/* Usa la función t() */}
+              <ThemedText style={styles.menuText}>{t('menu.home')}</ThemedText>
             </TouchableOpacity>
 
             {isAuthenticated && (
-              <TouchableOpacity 
-                style={styles.menuItem} 
+              <TouchableOpacity
+                style={styles.menuItem}
                 onPress={() => handleNavigation('/profile')}
               >
                 <Ionicons name="person-outline" size={24} color={colors.text} style={styles.menuIcon} />
-                <ThemedText style={styles.menuText}>Perfil</ThemedText>
+                {/* Usa la función t() */}
+                <ThemedText style={styles.menuText}>{t('menu.profile')}</ThemedText>
               </TouchableOpacity>
             )}
 
-            {/* Removed "Sobre Nosotros" section */}
-
-            <TouchableOpacity 
-              style={styles.menuItem} 
-              onPress={onLanguageChange}
+            <TouchableOpacity
+              style={styles.menuItem}
+              onPress={onLanguageChange} // Llama a la función para cambiar el idioma global
             >
               <Ionicons name="language-outline" size={24} color={colors.text} style={styles.menuIcon} />
-              <ThemedText style={styles.menuText}>Idioma: {currentLanguage}</ThemedText>
+              {/* Usa la variable calculada */}
+              <ThemedText style={styles.menuText}>{languageButtonText}</ThemedText>
             </TouchableOpacity>
           </View>
         </Animated.View>

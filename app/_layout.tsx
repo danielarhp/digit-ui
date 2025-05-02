@@ -5,10 +5,13 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { I18nextProvider } from 'react-i18next'; // Import the provider
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Header } from '@/components/Header';
 import { AuthProvider } from '@/contexts/AuthContext';
+// Import the initialized i18n instance
+import i18n from '../i18n'; // Ensure this path is correct
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -31,14 +34,17 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AuthProvider>
-        <Header />
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </AuthProvider>
+      {/* Wrap the relevant parts with I18nextProvider */}
+      <I18nextProvider i18n={i18n}>
+        <AuthProvider>
+          <Header />
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </AuthProvider>
+      </I18nextProvider>
     </ThemeProvider>
   );
 }

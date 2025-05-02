@@ -1,0 +1,112 @@
+{
+  "translation": {
+    "menu": {
+      "home": "Home",
+      "profile": "Profile",
+      "language": "Language",
+      "switchTo": "Switch to Spanish"
+    },
+    "header": {
+      "login": "Login",
+      "logout": "Logout"
+    },
+    "home": {
+      "featuredNews": "Featured News",
+      "ngos": "NGOs",
+      "urgentProjects": "Urgent Projects",
+      "goal": "Goal",
+      "raised": "Raised"
+    },
+    "profile": {
+      "editProfile": "Edit Profile",
+      "totalDonated": "Total Donated",
+      "projects": "Projects",
+      "memberSince": "Member since",
+      "supportedProjects": "Supported Projects"
+    },
+    "ong": {
+      "description": "Description",
+      "mission": "Mission",
+      "vision": "Vision",
+      "subscribers": "Subscribers",
+      "projects": "Projects",
+      "subscribed": "Subscribed",
+      "subscribe": "Subscribe",
+      "goal": "Goal",
+      "raised": "Raised"
+    },
+    "project": {
+      "loading": "Loading project...",
+      "notFound": "Project not found",
+      "notFoundDetails": "The project with ID {{projectId}} does not exist or is not available.",
+      "back": "Back",
+      "description": "Description",
+      "raised": "Raised",
+      "goal": "Goal",
+      "volunteers": "{{count}} volunteers",
+      "donateTitle": "Make a donation",
+      "donateButton": "Donate €{{amount}}",
+      "donationSuccessTitle": "Donation Successful",
+      "donationSuccessMessage": "You have donated €{{amount}} to the project \"{{projectName}}\". Thank you for your generosity!",
+      "ongBy": "By: {{name}}"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "acceptTerms": "I accept the ",
+      "termsLink": "terms and conditions",
+      "privacy": " of privacy",
+      "loginButton": "Login",
+      "termsTitle": "Terms and Conditions",
+      "termsAcceptButton": "Accept",
+      "termsAlertTitle": "Terms and Conditions",
+      "termsAlertMessage": "You must accept the terms and conditions to continue.",
+      "termsAlertConfirm": "Understood"
+    },
+    "emailSubscribe": {
+      "title": "Email Subscription",
+      "message": "Do you want to subscribe to emails from {{ongName}}?",
+      "description": "You will receive updates on projects, events, and important news.",
+      "cancel": "Cancel",
+      "subscribe": "Subscribe"
+    },
+    "emailUnsubscribe": {
+      "title": "Unsubscribe",
+      "message": "You are currently subscribed to emails from {{ongName}}",
+      "description": "Do you want to unsubscribe? You will no longer receive updates on projects, events, and news.",
+      "keep": "Keep",
+      "unsubscribe": "Unsubscribe"
+    },
+    "tabs": {
+        "home": "Home",
+        "profile": "Profile"
+    },
+    "news": {
+        "loading": "Loading news...",
+        "notFound": "News not found.",
+        "error": "Error loading news.",
+        "published": "Published",
+        "newsTitle": "News",
+        "listPlaceholder": "The list of news would be displayed here."
+    },
+    "about": {
+        "title": "About Us",
+        "missionTitle": "Our Mission",
+        "missionText": "Our mission is to connect people with non-governmental organizations (NGOs) that are making a positive impact in the world. We believe that everyone can contribute to making the world a better place, and we want to facilitate that process.",
+        "whoTitle": "Who We Are",
+        "whoText": "We are a team of developers and designers passionate about creating technology that has a positive social impact. Our platform is designed to make collaboration with NGOs more accessible and transparent for everyone.",
+        "valuesTitle": "Our Values",
+        "valueTransparencyTitle": "Transparency",
+        "valueTransparencyText": "We believe in full transparency in how NGOs operate and how donations are used.",
+        "valueAccessibilityTitle": "Accessibility",
+        "valueAccessibilityText": "We work to make volunteering and donations accessible to everyone, regardless of their location or resources.",
+        "valueImpactTitle": "Impact",
+        "valueImpactText": "We focus on maximizing the positive impact our users can have through their engagement with NGOs.",
+        "contactTitle": "Contact",
+        "contactText": "If you have any questions or suggestions, feel free to contact us:",
+        "contactEmail": "Email: info@digitapp.org",
+        "contactPhone": "Phone: +34 123 456 789"
+    }
+  }
+}

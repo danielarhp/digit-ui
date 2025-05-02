@@ -1,56 +1,34 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Dimensions, Image, ScrollView } from 'react-native';
-import { useColorScheme } from '../hooks/useColorScheme';
-import { Colors } from '../constants/Colors';
+import { ScrollView, StyleSheet, View, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
-import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../constants/Colors';
+import { useColorScheme } from '../hooks/useColorScheme';
 import { useRouter } from 'expo-router';
-import Swiper from 'react-native-swiper';
+// Import ongData directly
+import { ongData } from '../constants/OngData';
+// Import useTranslation hook
+import { useTranslation } from 'react-i18next';
+
+
 const { width } = Dimensions.get('window');
 
-const ongs = [
-  { id: 1, name: 'Nadiesolo', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi69cyfoEFFwVlVCmir7FgeWgLqJQnNUMoXg&s' },
-  { id: 2, name: 'Tacumi', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjjdt0R9NwTqKHLDQFCOiIOQzpiZEg7ctD7DIwud_-mjh7-hegl0AR6A41n_WWwlLvI1I&usqp=CAU' },
-  { id: 3, name: 'Fundación Lukas', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGOHiKxeS4gDAjfQMLkzQrKeDexZZ3_y8D5w&s' },
-  { id: 5, name: 'Alpe', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR2v4Z1ZX07AEStMVbGjkFGGXU1g33wzsjVw&s' }, // <-- CORREGIDO: Cambiado id de 4 a 5
-];
+// Define urgentProjects temporarily (adjust as needed)
+const urgentProjects = ongData.length > 0 && ongData[0].projects.length > 0
+  ? [ongData[0].projects[0]]
+  : [];
 
-const urgentProjects = [
-  {
-    id: 1,
-    name: 'Construcción de Escuela Rural',
-    image: 'https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg',
-    targetAmount: 50000,
-    raisedAmount: 35000,
-    progress: 70
-  },
-  {
-    id: 2,
-    name: 'Programa de Alimentación Infantil',
-    image: 'https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg',
-    targetAmount: 25000,
-    raisedAmount: 15000,
-    progress: 60
-  },
-  {
-    id: 3,
-    name: 'Centro de Rehabilitación',
-    image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg',
-    targetAmount: 75000,
-    raisedAmount: 30000,
-    progress: 40
-  }
-];
 
 export function Home() {
+  const { t } = useTranslation(); // Get the translation function
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme];
+  const colors = Colors[colorScheme ?? 'light']; // Use default if undefined
   const router = useRouter();
-  const [news, setNews] = React.useState([]);
+  // Provide a more specific type for news state
+  const [news, setNews] = React.useState<Array<{ _id: string; title: string; description: string; image: string }>>([]);
 
   React.useEffect(() => {
-    // Define las noticias directamente como un objeto JSON
+    // Define local news data
     const localNewsData = [
       {
           "_id": "67d5bde697156aa043d99b03",
@@ -80,13 +58,12 @@ export function Home() {
           "updatedAt": "2025-03-15T17:50:30.481Z"
       }
     ];
-    // Establece el estado con los datos locales
     setNews(localNewsData);
 
-    // Se elimina la llamada fetch a la API
+    // Fetch logic commented out
     // fetch('http://localhost:3000/news')
     //   .then(response => response.json())
-    //   .then(data => setNews(data)) // Esto sobreescribiría los datos locales si se dejara
+    //   .then(data => setNews(data))
     //   .catch(error => console.error('Error fetching news:', error));
   }, []);
 
@@ -94,15 +71,15 @@ export function Home() {
     <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}
       accessibilityRole="main"
-      accessibilityLabel="Página principal"
+      accessibilityLabel={t('home.mainPageLabel')} // Use translation
     >
       {/* News Carousel Section */}
       <View
         style={styles.section}
         accessibilityRole="region"
-        accessibilityLabel="Noticias Destacadas"
+        accessibilityLabel={t('home.featuredNews')} // Use translation
       >
-        <ThemedText style={styles.sectionTitle} accessibilityRole="header">Noticias Destacadas</ThemedText>
+        <ThemedText style={styles.sectionTitle} accessibilityRole="header">{t('home.featuredNews')}</ThemedText>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -110,25 +87,21 @@ export function Home() {
           style={styles.carouselContainer}
           accessibilityRole="list"
         >
-          {/* El mapeo de news funcionará ahora con los datos locales */}
           {news.map((newsItem) => (
             <TouchableOpacity
               key={newsItem._id}
               style={[styles.newsCard, { width: width - 48 }]}
               activeOpacity={0.9}
-              // --- CAMBIO AQUÍ ---
-              // Cambia la navegación para usar query param 'id'
               onPress={() => router.push(`/news?id=${newsItem._id}`)}
-              // --- FIN DEL CAMBIO ---
               accessibilityRole="button"
-              accessibilityLabel={`Noticia: ${newsItem.title}`}
-              accessibilityHint={`Pulsa para ver más detalles sobre ${newsItem.title}`}
+              accessibilityLabel={t('home.newsAccessibilityLabel', { title: newsItem.title })} // Example translation
+              accessibilityHint={t('home.newsAccessibilityHint', { title: newsItem.title })} // Example translation
             >
               <Image
                 source={{ uri: newsItem.image }}
                 style={styles.newsImage}
                 accessibilityRole="image"
-                accessibilityLabel={newsItem.title}
+                accessibilityLabel={newsItem.title} // Keep title or use translation
               />
               <View style={styles.newsContent}>
                 <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
@@ -137,37 +110,35 @@ export function Home() {
             </TouchableOpacity>
           ))}
         </ScrollView>
-        {/* Opcional: Botón para ver todas las noticias */}
-    
       </View>
 
       {/* ONGs Section */}
       <View
         style={styles.section}
         accessibilityRole="region"
-        accessibilityLabel="Organizaciones No Gubernamentales"
+        accessibilityLabel={t('home.ngos')} // Use translation
       >
-        <ThemedText style={styles.sectionTitle} accessibilityRole="header">ONGs</ThemedText>
+        <ThemedText style={styles.sectionTitle} accessibilityRole="header">{t('home.ngos')}</ThemedText>
         <View
           style={styles.ongsContainer}
           accessibilityRole="list"
         >
-          {ongs.map((ong) => ( // Itera sobre el array ongs actualizado
+          {/* Use ongData and remove misplaced comment */}
+          {ongData.map((ong) => (
             <TouchableOpacity
               key={ong.id}
               style={styles.ongButton}
-              // Ahora se enviará id=5 para Alpe, que coincide con OngData.ts
               onPress={() => router.push(`/ong?id=${ong.id}`)}
               accessibilityRole="button"
-              accessibilityLabel={`ONG ${ong.name}`}
-              accessibilityHint={`Pulsa para ver más información sobre ${ong.name}`}
+              accessibilityLabel={t('home.ongAccessibilityLabel', { name: ong.name })} // Example translation
+              accessibilityHint={t('home.ongAccessibilityHint', { name: ong.name })} // Example translation
             >
               <Image
                 source={{ uri: ong.logo }}
                 style={styles.ongLogo}
                 resizeMode="contain"
                 accessibilityRole="image"
-                accessibilityLabel={`Logo de ${ong.name}`}
+                accessibilityLabel={t('home.ongLogoAccessibilityLabel', { name: ong.name })} // Example translation
               />
             </TouchableOpacity>
           ))}
@@ -178,9 +149,9 @@ export function Home() {
       <View
         style={styles.section}
         accessibilityRole="region"
-        accessibilityLabel="Proyectos Urgentes"
+        accessibilityLabel={t('home.urgentProjects')} // Use translation
       >
-        <ThemedText style={styles.sectionTitle} accessibilityRole="header">Proyectos Urgentes</ThemedText>
+        <ThemedText style={styles.sectionTitle} accessibilityRole="header">{t('home.urgentProjects')}</ThemedText>
         <View
           style={styles.urgentProjectsContainer}
           accessibilityRole="list"
@@ -190,38 +161,39 @@ export function Home() {
               key={project.id}
               style={styles.projectCard}
               activeOpacity={0.9}
-              // --- CORRECCIÓN AQUÍ ---
-              // Cambiamos la ruta de /ong a /project y usamos project.id
-              onPress={() => router.push(`/project?id=${project.id}`)} 
-              // --- FIN DE LA CORRECCIÓN ---
+              onPress={() => router.push(`/project?id=${project.id}`)}
               accessibilityRole="button"
-              accessibilityLabel={`Proyecto: ${project.name}`}
-              accessibilityHint={`Pulsa para ver más detalles sobre ${project.name}`}
+              accessibilityLabel={t('home.projectAccessibilityLabel', { name: project.name })} // Example translation
+              accessibilityHint={t('home.projectAccessibilityHint', { name: project.name })} // Example translation
             >
               <Image
                 source={{ uri: project.image }}
                 style={styles.projectImage}
                 accessibilityRole="image"
-                accessibilityLabel={`Imagen del proyecto ${project.name}`}
+                accessibilityLabel={t('home.projectImageAccessibilityLabel', { name: project.name })} // Example translation
               />
               <View style={styles.projectContent}>
                 <ThemedText style={styles.projectTitle}>{project.name}</ThemedText>
-                <View 
+                <View
                   style={styles.projectStats}
                   accessibilityRole="text"
-                  accessibilityLabel={`Meta: ${project.targetAmount.toLocaleString()} dólares. Recaudado: ${project.raisedAmount.toLocaleString()} dólares`}
+                  // Example translation for accessibility
+                  accessibilityLabel={t('home.projectStatsAccessibilityLabel', {
+                    target: project.targetAmount.toLocaleString(),
+                    raised: project.raisedAmount.toLocaleString()
+                  })}
                 >
                   <ThemedText style={styles.projectAmount}>
-                    Meta: ${project.targetAmount.toLocaleString()}
+                    {t('home.projectTargetAmount', { amount: project.targetAmount.toLocaleString() })}
                   </ThemedText>
                   <ThemedText style={styles.projectAmount}>
-                    Recaudado: ${project.raisedAmount.toLocaleString()}
+                    {t('home.projectRaisedAmount', { amount: project.raisedAmount.toLocaleString() })}
                   </ThemedText>
                 </View>
-                <View 
+                <View
                   style={styles.progressBarContainer}
                   accessibilityRole="progressbar"
-                  accessibilityLabel={`Progreso: ${project.progress}%`}
+                  accessibilityLabel={t('home.projectProgressLabel', { progress: project.progress })} // Example translation
                   accessibilityValue={{
                     min: 0,
                     max: 100,
@@ -244,191 +216,131 @@ export function Home() {
   );
 }
 
+// --- STYLES ---
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   section: {
-    padding: 16,
-    marginBottom: 8,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 16,
-    letterSpacing: 0.5,
-  },
-
-  // Remove these unused styles
-  carouselContent: {
+    marginBottom: 24,
     paddingHorizontal: 16,
   },
-  carouselButton: {
-    position: 'absolute',
-    top: '50%',
-    transform: [{ translateY: -20 }],
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1,
-    elevation: 5,
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 16,
   },
-  leftButton: {
-    left: 8,
-  },
-  rightButton: {
-    right: 8,
-  },
-
-  // Update carouselContainer style
+  // News Carousel Styles
   carouselContainer: {
-    height: 250,
-    marginTop: 8,
+    // Styles for the carousel container if needed
   },
-
-  // Update newsCard style
   newsCard: {
-    flex: 1,
-    borderRadius: 16,
-    overflow: 'hidden',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    marginHorizontal: 8, // Add horizontal margin between cards
+    backgroundColor: 'white', // Or colors.card
+    borderRadius: 12,
+    marginRight: 16, // Space between cards
+    overflow: 'hidden', // To clip the image to rounded borders
+    elevation: 3, // Shadow on Android
+    shadowColor: '#000', // Shadow on iOS
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   newsImage: {
     width: '100%',
-    height: '100%',
-    position: 'absolute',
+    height: 180, // Adjusted height for carousel
   },
   newsContent: {
-    flex: 1,
-    padding: 16,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    padding: 12,
   },
-  // Update styles for better accessibility
   newsTitle: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 8,
-    // Ensure minimum contrast ratio of 4.5:1
-    textShadow: '0px 0px 4px rgba(0,0,0,0.8)',
+    marginBottom: 4,
   },
   newsDescription: {
     fontSize: 14,
-    color: '#fff',
-    opacity: 0.9,
-    // Ensure minimum contrast ratio of 4.5:1
-    textShadow: '0px 0px 4px rgba(0,0,0,0.8)',
+    opacity: 0.8,
   },
+  // ONGs Section Styles
   ongsContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginTop: 8,
+    flexWrap: 'wrap', // Allows logos to wrap to the next line
+    justifyContent: 'space-around', // Distributes space
+    alignItems: 'center',
   },
   ongButton: {
-    width: '23%',
-    aspectRatio: 1,
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    marginBottom: 16,
-    padding: 8,
-    alignItems: 'center',
+    width: 80, // Fixed width for each logo
+    height: 80, // Fixed height
+    margin: 8, // Space around each logo
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    alignItems: 'center',
+    borderRadius: 40, // Circle
+    backgroundColor: '#f0f0f0', // Light background
+    overflow: 'hidden', // To contain the image
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
   },
   ongLogo: {
-    width: '100%',
-    height: '100%',
+    width: '80%', // Image takes up most of the button
+    height: '80%',
   },
-  carouselContainer: {
-    height: 250,
-    position: 'relative',
-    marginTop: 8,
-  },
-  carouselButton: {
-    position: 'absolute',
-    top: '50%',
-    transform: [{ translateY: -20 }],
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1,
-    elevation: 5,
-  },
-  leftButton: {
-    left: 8,
-  },
-  rightButton: {
-    right: 8,
-  },
+  // Urgent Projects Styles
   urgentProjectsContainer: {
-    gap: 16,
+    // Styles if needed for the projects container
   },
   projectCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
+    backgroundColor: 'white', // Or colors.card
+    borderRadius: 12,
+    marginBottom: 16,
     overflow: 'hidden',
     elevation: 3,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    marginBottom: 16,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    flexDirection: 'row', // Image on the left, content on the right
   },
   projectImage: {
-    width: '100%',
-    height: 200,
+    width: 100, // Fixed width for the project image
+    height: '100%', // Takes the full height of the card
   },
   projectContent: {
-    padding: 16,
+    flex: 1, // Takes the remaining space
+    padding: 12,
   },
   projectTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   projectStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 8,
   },
   projectAmount: {
-    fontSize: 14,
-    marginBottom: 4,
+    fontSize: 12,
+    opacity: 0.7,
   },
   progressBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    marginTop: 4,
   },
   progressBar: {
     flex: 1,
     height: 8,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#e0e0e0', // Background of the bar
     borderRadius: 4,
     overflow: 'hidden',
+    marginRight: 8,
   },
   progressFill: {
     height: '100%',
-    // Use a more accessible blue color with better contrast
-    backgroundColor: '#0056b3',
+    backgroundColor: '#2196f3', // Progress color (colors.tint)
   },
   progressText: {
     fontSize: 12,
-    fontWeight: 'bold',
-  }
+    fontWeight: '600',
+  },
 });

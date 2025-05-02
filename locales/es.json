@@ -1,0 +1,112 @@
+{
+  "translation": {
+    "menu": {
+      "home": "Inicio",
+      "profile": "Perfil",
+      "language": "Idioma",
+      "switchTo": "Cambiar a Inglés"
+    },
+    "header": {
+      "login": "Iniciar Sesión",
+      "logout": "Cerrar Sesión"
+    },
+    "home": {
+      "featuredNews": "Noticias Destacadas",
+      "ngos": "ONGs",
+      "urgentProjects": "Proyectos Urgentes",
+      "goal": "Meta",
+      "raised": "Recaudado"
+    },
+    "profile": {
+      "editProfile": "Editar Perfil",
+      "totalDonated": "Total Donado",
+      "projects": "Proyectos",
+      "memberSince": "Miembro desde",
+      "supportedProjects": "Proyectos Apoyados"
+    },
+    "ong": {
+      "description": "Descripción",
+      "mission": "Misión",
+      "vision": "Visión",
+      "subscribers": "Suscriptores",
+      "projects": "Proyectos",
+      "subscribed": "Suscrito",
+      "subscribe": "Suscribirse",
+      "goal": "Meta",
+      "raised": "Recaudado"
+    },
+    "project": {
+      "loading": "Cargando proyecto...",
+      "notFound": "Proyecto no encontrado",
+      "notFoundDetails": "El proyecto con ID {{projectId}} no existe o no está disponible.",
+      "back": "Volver",
+      "description": "Descripción",
+      "raised": "Recaudado",
+      "goal": "Meta",
+      "volunteers": "{{count}} voluntarios",
+      "donateTitle": "Haz una donación",
+      "donateButton": "Donar €{{amount}}",
+      "donationSuccessTitle": "Donación Exitosa",
+      "donationSuccessMessage": "Has donado €{{amount}} al proyecto \"{{projectName}}\". ¡Gracias por tu generosidad!",
+      "ongBy": "Por: {{name}}"
+    },
+    "login": {
+      "title": "Iniciar Sesión",
+      "email": "Email",
+      "password": "Contraseña",
+      "acceptTerms": "Acepto los ",
+      "termsLink": "términos y condiciones",
+      "privacy": " de privacidad",
+      "loginButton": "Entrar",
+      "termsTitle": "Términos y Condiciones",
+      "termsAcceptButton": "Aceptar",
+      "termsAlertTitle": "Términos y Condiciones",
+      "termsAlertMessage": "Debes aceptar los términos y condiciones para continuar.",
+      "termsAlertConfirm": "Entendido"
+    },
+    "emailSubscribe": {
+      "title": "Suscripción por Email",
+      "message": "¿Deseas suscribirte a los emails de {{ongName}}?",
+      "description": "Recibirás actualizaciones sobre proyectos, eventos y noticias importantes.",
+      "cancel": "Cancelar",
+      "subscribe": "Suscribirse"
+    },
+    "emailUnsubscribe": {
+      "title": "Cancelar Suscripción",
+      "message": "Actualmente estás suscrito a los emails de {{ongName}}",
+      "description": "¿Deseas cancelar tu suscripción? Ya no recibirás actualizaciones sobre proyectos, eventos y noticias.",
+      "keep": "Mantener",
+      "unsubscribe": "Cancelar suscripción"
+    },
+    "tabs": {
+        "home": "Inicio",
+        "profile": "Perfil"
+    },
+    "news": {
+        "loading": "Cargando noticia...",
+        "notFound": "Noticia no encontrada.",
+        "error": "Error al cargar la noticia.",
+        "published": "Publicado",
+        "newsTitle": "Noticias",
+        "listPlaceholder": "Aquí se mostraría la lista de noticias."
+    },
+    "about": {
+        "title": "Sobre Nosotros",
+        "missionTitle": "Nuestra Misión",
+        "missionText": "Nuestra misión es conectar a personas con organizaciones no gubernamentales (ONGs) que están haciendo un impacto positivo en el mundo. Creemos que todos pueden contribuir a hacer del mundo un lugar mejor, y queremos facilitar ese proceso.",
+        "whoTitle": "Quiénes Somos",
+        "whoText": "Somos un equipo de desarrolladores y diseñadores apasionados por crear tecnología que tenga un impacto social positivo. Nuestra plataforma está diseñada para hacer que la colaboración con ONGs sea más accesible y transparente para todos.",
+        "valuesTitle": "Nuestros Valores",
+        "valueTransparencyTitle": "Transparencia",
+        "valueTransparencyText": "Creemos en la total transparencia en cómo operan las ONGs y cómo se utilizan las donaciones.",
+        "valueAccessibilityTitle": "Accesibilidad",
+        "valueAccessibilityText": "Trabajamos para hacer que el voluntariado y las donaciones sean accesibles para todos, sin importar su ubicación o recursos.",
+        "valueImpactTitle": "Impacto",
+        "valueImpactText": "Nos enfocamos en maximizar el impacto positivo que nuestros usuarios pueden tener a través de su participación con las ONGs.",
+        "contactTitle": "Contacto",
+        "contactText": "Si tienes alguna pregunta o sugerencia, no dudes en contactarnos:",
+        "contactEmail": "Email: info@digitapp.org",
+        "contactPhone": "Teléfono: +34 123 456 789"
+    }
+  }
+}

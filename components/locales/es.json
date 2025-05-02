@@ -1,0 +1,25 @@
+{
+  "translation": {
+    "menu": {
+      "home": "Inicio",
+      "profile": "Perfil",
+      "language": "Idioma",
+      "switchTo": "English"
+    },
+    "project": {
+      "raised": "Recaudado",
+      "target": "Objetivo",
+      "volunteers": "Voluntarios",
+      "impact": "Impacto",
+      "location": "Ubicación",
+      "duration": "Duración"
+    },
+    "login": {
+       "title": "Iniciar Sesión",
+       "email": "Correo Electrónico",
+       "password": "Contraseña",
+       "button": "Iniciar Sesión"
+    }
+    // ... más traducciones para toda la app
+  }
+}
