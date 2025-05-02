@@ -50,7 +50,8 @@ export function Home() {
   const [news, setNews] = React.useState([]);
 
   React.useEffect(() => {
-    setNews([
+    // Define las noticias directamente como un objeto JSON
+    const localNewsData = [
       {
           "_id": "67d5bde697156aa043d99b03",
           "title": "Voluntarios necesarios para proyecto comunitario",
@@ -71,28 +72,32 @@ export function Home() {
       },
       {
           "_id": "67d5bde697156aa043d99b02",
-          "title": "Nueva campaña de ayuda de Daniela",
+          "title": "Nueva campaña de ayuda de Danela", // Corregido: Era Daniela
           "description": "Únete a nuestra nueva iniciativa para ayudar a las comunidades necesitadas",
           "image": "https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg",
           "__v": 0,
           "createdAt": "2025-03-15T17:50:30.481Z",
           "updatedAt": "2025-03-15T17:50:30.481Z"
       }
-    ])
-    fetch('http://localhost:3000/news')
-      .then(response => response.json())
-      .then(data => setNews(data))
-      .catch(error => console.error('Error fetching news:', error));
+    ];
+    // Establece el estado con los datos locales
+    setNews(localNewsData);
+
+    // Se elimina la llamada fetch a la API
+    // fetch('http://localhost:3000/news')
+    //   .then(response => response.json())
+    //   .then(data => setNews(data)) // Esto sobreescribiría los datos locales si se dejara
+    //   .catch(error => console.error('Error fetching news:', error));
   }, []);
 
   return (
-    <ScrollView 
+    <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}
       accessibilityRole="main"
       accessibilityLabel="Página principal"
     >
       {/* News Carousel Section */}
-      <View 
+      <View
         style={styles.section}
         accessibilityRole="region"
         accessibilityLabel="Noticias Destacadas"
@@ -105,13 +110,16 @@ export function Home() {
           style={styles.carouselContainer}
           accessibilityRole="list"
         >
+          {/* El mapeo de news funcionará ahora con los datos locales */}
           {news.map((newsItem) => (
             <TouchableOpacity
               key={newsItem._id}
               style={[styles.newsCard, { width: width - 48 }]}
               activeOpacity={0.9}
-              // ¡OJO! Si newsItem.ongId no existe, usa 1 (Nadiesolo)
-              onPress={() => router.push(`/ong?id=${newsItem.ongId || 1}`)}
+              // --- CAMBIO AQUÍ ---
+              // Cambia la navegación para usar query param 'id'
+              onPress={() => router.push(`/news?id=${newsItem._id}`)}
+              // --- FIN DEL CAMBIO ---
               accessibilityRole="button"
               accessibilityLabel={`Noticia: ${newsItem.title}`}
               accessibilityHint={`Pulsa para ver más detalles sobre ${newsItem.title}`}
@@ -129,16 +137,27 @@ export function Home() {
             </TouchableOpacity>
           ))}
         </ScrollView>
+        {/* Opcional: Botón para ver todas las noticias */}
+        <TouchableOpacity
+          style={styles.seeAllButton}
+          // --- CAMBIO AQUÍ (si existe este botón y quieres que lleve a la lista) ---
+          // Asegúrate que este botón lleve a la pantalla correcta si es necesario
+          // Si '/news' es la pantalla de lista, está bien. Si es la de detalle, ajusta.
+          onPress={() => router.push('/news')} // Ajusta si '/news' debe ser la lista general
+          // --- FIN DEL CAMBIO ---
+        >
+          <ThemedText style={styles.seeAllButtonText}>Ver todas las noticias</ThemedText>
+        </TouchableOpacity>
       </View>
 
       {/* ONGs Section */}
-      <View 
+      <View
         style={styles.section}
         accessibilityRole="region"
         accessibilityLabel="Organizaciones No Gubernamentales"
       >
         <ThemedText style={styles.sectionTitle} accessibilityRole="header">ONGs</ThemedText>
-        <View 
+        <View
           style={styles.ongsContainer}
           accessibilityRole="list"
         >
@@ -165,13 +184,13 @@ export function Home() {
       </View>
 
       {/* Urgent Projects Section */}
-      <View 
+      <View
         style={styles.section}
         accessibilityRole="region"
         accessibilityLabel="Proyectos Urgentes"
       >
         <ThemedText style={styles.sectionTitle} accessibilityRole="header">Proyectos Urgentes</ThemedText>
-        <View 
+        <View
           style={styles.urgentProjectsContainer}
           accessibilityRole="list"
         >
