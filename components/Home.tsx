@@ -299,20 +299,16 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    flexDirection: 'row', // Image on the left, content on the right
+    padding: 12, // Añadido padding para el título
   },
-  projectImage: {
-    width: 100, // Fixed width for the project image
-    height: '100%', // Takes the full height of the card
-  },
-  projectContent: {
-    flex: 1, // Takes the remaining space
-    padding: 12,
-  },
-  projectTitle: {
+  newsTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
+    color: 'white', // Cambiado a blanco
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
+    padding: 8, // Espaciado interno
+    borderRadius: 4, // Esquinas redondeadas
   },
   projectStats: {
     flexDirection: 'row',
