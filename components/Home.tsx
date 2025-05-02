@@ -71,7 +71,7 @@ export function Home() {
       },
       {
           "_id": "67d5bde697156aa043d99b02",
-          "title": "Nueva campaña de ayuda de Danela",
+          "title": "Nueva campaña de ayuda de Daniela",
           "description": "Únete a nuestra nueva iniciativa para ayudar a las comunidades necesitadas",
           "image": "https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg",
           "__v": 0,
