@@ -93,11 +93,11 @@ export const ongData: Ong[] = [
       {
         id: 5, // Nuevo ID de proyecto único
         name: 'Reforestación Alpina',
-        image: 'https://i.postimg.cc/pX5g7jJc/Mountain-landscape-with-pine-trees-and-a-clear-blue.jpg', // Imagen de marcador de posición
+        image: 'https://i.postimg.cc/pX5g7jJc/Mountain-landscape-with-pine-trees-and-a-clear-blue.jpg', // Imagen actualizada (ejemplo)
         targetAmount: 60000,
         raisedAmount: 20000,
         progress: 33,
-        description: 'Proyecto de reforestación para restaurar áreas degradadas en zonas de alta montaña.'
+        description: 'Plantación de especies autóctonas para recuperar la cubierta vegetal y prevenir la erosión en zonas alpinas degradadas.' // Descripción añadida
       }
     ],
     subscribers: 750 // Número de suscriptores de ejemplo

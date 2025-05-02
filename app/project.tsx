@@ -54,6 +54,21 @@ const allProjects = [
     volunteers: 60, // Ejemplo
     impact: 'Atenderá a 100+ pacientes al mes', // Ejemplo
     ongId: 3, // Ejemplo, asociar a Fundación Lukas
+  },
+  { // Nuevo proyecto añadido
+    id: 5,
+    name: 'Rehabilitación Forestal',
+    image: 'https://i.postimg.cc/pX5g7jJc/Mountain-landscape-with-pine-trees-and-a-clear-blue.jpg', // Imagen de ejemplo (relacionada con Alpe)
+    description: 'Proyecto enfocado en la restauración de áreas forestales degradadas mediante la plantación de especies nativas y la mejora del suelo.',
+    raisedAmount: 10000,
+    targetAmount: 40000,
+    progress: 25,
+    location: 'Pirineos, Aragón', // Ejemplo
+    startDate: '2024-05-01', // Ejemplo
+    endDate: '2025-04-30', // Ejemplo
+    volunteers: 50, // Ejemplo
+    impact: 'Restaurar 10 hectáreas de bosque', // Ejemplo
+    ongId: 5, // Asociado a Alpe (ID 5 de OngData.ts)
   }
 ];
 
