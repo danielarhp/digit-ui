@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { Colors } from '../constants/Colors';
@@ -45,8 +46,10 @@ const mockProjects: Project[] = [
 
 export function Profile() {
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme];
+  // Use ?? 'light' to provide a default value if colorScheme is null/undefined
+  const colors = Colors[colorScheme ?? 'light'];
   const { isAuthenticated } = useAuth();
+  const router = useRouter(); // Added router initialization
 
   if (!isAuthenticated) {
     return null;
@@ -104,9 +107,17 @@ export function Profile() {
         </View>
 
         {mockProjects.map((project) => (
-          <View key={project.id} style={[styles.projectCard, { backgroundColor: colors.card }]}>
+          // --- ENVOLVER CON TouchableOpacity Y AÑADIR onPress ---
+          <TouchableOpacity
+            key={project.id}
+            // Use colors for dynamic styling here
+            style={[styles.projectCard, { backgroundColor: colors.card }]}
+            activeOpacity={0.8} // Añade feedback visual
+            onPress={() => router.push(`/project?id=${project.id}`)} // Navegar al proyecto
+          >
             <Image source={{ uri: project.image }} style={styles.projectImage} />
             <View style={styles.projectInfo}>
+              {/* Use colors for dynamic styling here */}
               <ThemedText style={[styles.projectName, { color: colors.text }]}>{project.name}</ThemedText>
               <ThemedText style={[styles.projectOrg, { color: colors.text }]}>{project.organization}</ThemedText>
               <View style={styles.projectDetails}>
@@ -115,28 +126,38 @@ export function Profile() {
               </View>
               <View style={styles.progressContainer}>
                 <View style={[styles.progressBar, { backgroundColor: colors.border }]}>
-                  <View 
-                    style={[styles.progressFill, { 
+                  <View
+                    style={[styles.progressFill, {
+                      // Use colors for dynamic styling here
                       backgroundColor: colors.tint,
                       width: `${project.progress}%`
-                    }]} 
+                    }]}
                   />
                 </View>
+                {/* Use colors for dynamic styling here */}
                 <ThemedText style={[styles.progressText, { color: colors.text }]}>{project.progress}%</ThemedText>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
+          // --- FIN ENVOLVER CON TouchableOpacity ---
         ))}
       </View>
     </ScrollView>
   );
 }
 
+// --- Potential Issue Area ---
+// Styles should generally be defined outside the component function
+// or use dynamic styling within the component as needed.
+// The 'colors' variable is not directly accessible here in the static StyleSheet definition.
+// You should apply dynamic styles inline or pass 'colors' as props if needed in styled components.
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: colors.background, // Cannot use 'colors' here
   },
   header: {
+    // backgroundColor: colors.primary, // Cannot use 'colors' here
     padding: 20,
   },
   profileInfo: {
@@ -148,56 +169,60 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
+    marginRight: 15, // Added margin for spacing
   },
   userInfo: {
-    marginLeft: 15,
     flex: 1,
   },
   userName: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 5,
+    // color: colors.text, // Cannot use 'colors' here
   },
   userBio: {
     fontSize: 14,
+    // color: colors.text, // Cannot use 'colors' here
     opacity: 0.8,
   },
   editButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 10,
-    borderWidth: 2,
-    borderColor: '#2196f3',
+    // backgroundColor: colors.tint, // Cannot use 'colors' here
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    alignSelf: 'flex-start', // Position button correctly
+    marginTop: 10, // Add some margin
   },
   editButtonText: {
-    color: '#2196f3',
+    color: 'white', // Static color for button text
     marginLeft: 5,
-    fontSize: 16,
+    fontWeight: 'bold',
   },
   statsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 20,
-    gap: 10,
+    justifyContent: 'space-around',
+    paddingVertical: 15,
+    // borderBottomWidth: 1, // Consider removing or using dynamic color
+    // borderBottomColor: colors.border, // Cannot use 'colors' here
+    paddingHorizontal: 10, // Add horizontal padding
   },
   statCard: {
-    flex: 1,
-    padding: 15,
-    borderRadius: 12,
     alignItems: 'center',
+    padding: 10, // Add padding inside card
+    borderRadius: 8, // Add border radius
+    minWidth: width / 3.5, // Ensure cards have minimum width
   },
   statNumber: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#2196f3',
+    marginBottom: 3,
   },
   statLabel: {
     fontSize: 12,
-    color: '#2196f3',
-    marginTop: 5,
+    opacity: 0.9,
   },
   projectsSection: {
     padding: 20,
@@ -209,42 +234,47 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   sectionTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 16,
-    letterSpacing: 0.5,
-    color: '#2196f3',
+    fontSize: 20,
+    fontWeight: 'bold',
+    // color: colors.text, // Cannot use 'colors' here
   },
   filterContainer: {
     flexDirection: 'row',
-    gap: 10,
   },
   filterButton: {
-    padding: 8,
+    marginLeft: 10,
+    padding: 5,
   },
   projectCard: {
-    borderRadius: 12,
+    flexDirection: 'row',
     marginBottom: 15,
+    borderRadius: 10,
     overflow: 'hidden',
+    // backgroundColor: colors.card, // Cannot use 'colors' here
+    // shadowColor: '#000', // Static shadow color
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   projectImage: {
-    width: '100%',
-    height: 150,
+    width: 100,
+    height: '100%', // Make image fill height
   },
   projectInfo: {
+    flex: 1,
     padding: 15,
   },
   projectName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
-    color: '#2196f3',
   },
   projectOrg: {
     fontSize: 14,
-    opacity: 0.8,
+    // color: colors.text, // Cannot use 'colors' here
+    opacity: 0.7,
     marginBottom: 8,
-    color: '#2196f3',
   },
   projectDetails: {
     flexDirection: 'row',
@@ -252,33 +282,33 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   projectAmount: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#2196f3',
+    fontSize: 14,
+    fontWeight: '500',
   },
   projectDate: {
-    fontSize: 14,
-    opacity: 0.8,
-    color: '#2196f3',
+    fontSize: 12,
+    opacity: 0.6,
   },
   progressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    marginTop: 5,
   },
   progressBar: {
     flex: 1,
     height: 8,
     borderRadius: 4,
+    // backgroundColor: colors.border, // Cannot use 'colors' here
     overflow: 'hidden',
+    marginRight: 8,
   },
   progressFill: {
     height: '100%',
     borderRadius: 4,
+    // backgroundColor: colors.tint, // Cannot use 'colors' here
   },
   progressText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#2196f3',
+    fontSize: 12,
+    fontWeight: '500',
   },
 });
