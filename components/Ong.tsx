@@ -6,7 +6,8 @@ import { Colors } from '../constants/Colors';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { ongData } from '../constants/OngData';
 import { Ionicons } from '@expo/vector-icons';
-import { useLocalSearchParams } from 'expo-router';
+// Importa useRouter y useLocalSearchParams
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { EmailSubscriptionModal } from './EmailSubscriptionModal';
 import { EmailUnsubscribeModal } from './EmailUnsubscribeModal';
 import { LoginModal } from './LoginModal';
@@ -23,7 +24,8 @@ export function Ong() {
   const [isEmailUnsubscribeModalVisible, setIsEmailUnsubscribeModalVisible] = useState(false);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const { isAuthenticated, login } = useAuth();
-  
+  const router = useRouter(); // Inicializa el router
+
   const { id } = useLocalSearchParams();
   const ong = ongData.find(o => o.id === Number(id)) || ongData[0];
 
@@ -133,7 +135,13 @@ export function Ong() {
       <View style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Proyectos</ThemedText>
         {ong.projects.map((project) => (
-          <View key={project.id} style={[styles.projectCard, { backgroundColor: colors.card }]}>
+          // Envuelve la tarjeta del proyecto con TouchableOpacity
+          <TouchableOpacity
+            key={project.id}
+            style={[styles.projectCard, { backgroundColor: colors.card }]}
+            activeOpacity={0.8} // Añade feedback visual al pulsar
+            onPress={() => router.push(`/project?id=${project.id}`)} // Navega a la pantalla del proyecto con su ID
+          >
             <Image source={{ uri: project.image }} style={styles.projectImage} />
             <View style={styles.projectInfo}>
               <ThemedText style={styles.projectName}>{project.name}</ThemedText>
@@ -149,13 +157,13 @@ export function Ong() {
               <View style={styles.progressBarContainer}>
                 <View style={styles.progressBar}>
                   <View
-                    style={[styles.progressFill, { width: `${project.progress}%` }]}
+                    style={[styles.progressFill, { width: `${project.progress}%`, backgroundColor: colors.tint }]} // Usa color del tema
                   />
                 </View>
                 <ThemedText style={styles.progressText}>{project.progress}%</ThemedText>
               </View>
             </View>
-          </View>
+          </TouchableOpacity> // Cierra TouchableOpacity
         ))}
       </View>
       

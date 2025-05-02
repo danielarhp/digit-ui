@@ -38,15 +38,6 @@ export const ongData: Ong[] = [
         raisedAmount: 35000,
         progress: 70,
         description: 'Proyecto para construir una escuela en zona rural que beneficiará a más de 200 niños.'
-      },
-      {
-        id: 2,
-        name: 'Programa de Alimentación Infantil',
-        image: 'https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg',
-        targetAmount: 25000,
-        raisedAmount: 15000,
-        progress: 60,
-        description: 'Programa de alimentación para niños en situación de vulnerabilidad.'
       }
     ],
     subscribers: 1200
