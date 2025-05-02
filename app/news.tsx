@@ -60,21 +60,21 @@ export default function NewsScreen() {
           {
               "_id": "67d5bde697156aa043d99b03",
               "title": "Voluntarios necesarios para proyecto comunitario",
-              "description": "Buscamos personas comprometidas para hacer la diferencia",
+              "description": "Estamos buscando activamente personas comprometidas y entusiastas que deseen marcar una diferencia tangible en nuestra comunidad. Únete a nuestro equipo para participar en un proyecto significativo que abordará necesidades locales importantes y fomentará la colaboración vecinal. Tu tiempo y habilidades son valiosos.",
               "image": "https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg",
               "createdAt": "2025-03-15T17:50:30.482Z",
           },
           {
               "_id": "67d5bde697156aa043d99b04",
               "title": "Resultados del último proyecto social",
-              "description": "Descubre el impacto positivo que hemos logrado juntos",
+              "description": "Descubre el impacto positivo y los logros significativos que hemos alcanzado juntos en nuestro más reciente proyecto social. Analizamos los datos, compartimos historias de éxito y reflexionamos sobre las lecciones aprendidas. Gracias a la colaboración de todos, hemos podido generar un cambio real y medible.",
               "image": "https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg",
               "createdAt": "2025-03-15T17:50:30.482Z",
           },
           {
               "_id": "67d5bde697156aa043d99b02",
               "title": "Nueva campaña de ayuda",
-              "description": "Únete a nuestra nueva iniciativa para ayudar a las comunidades necesitadas",
+              "description": "Te invitamos a unirte a nuestra nueva y emocionante iniciativa destinada a proporcionar apoyo vital a las comunidades más necesitadas. Esta campaña se centrará en recursos esenciales, educación y desarrollo sostenible. Tu participación, ya sea grande o pequeña, contribuirá directamente a mejorar vidas.",
               "image": "https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg",
               "createdAt": "2025-03-15T17:50:30.481Z",
           }
