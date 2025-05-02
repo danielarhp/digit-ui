@@ -91,13 +91,7 @@ export function SideMenu({ visible, onClose, onLanguageChange, currentLanguage }
               </TouchableOpacity>
             )}
 
-            <TouchableOpacity 
-              style={styles.menuItem} 
-              onPress={() => handleNavigation('/about')}
-            >
-              <Ionicons name="information-circle-outline" size={24} color={colors.text} style={styles.menuIcon} />
-              <ThemedText style={styles.menuText}>Sobre Nosotros</ThemedText>
-            </TouchableOpacity>
+            {/* Removed "Sobre Nosotros" section */}
 
             <TouchableOpacity 
               style={styles.menuItem} 
