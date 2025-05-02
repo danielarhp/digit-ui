@@ -14,9 +14,7 @@ import { useTranslation } from 'react-i18next';
 const { width } = Dimensions.get('window');
 
 // Define urgentProjects temporarily (adjust as needed)
-const urgentProjects = ongData.length > 0 && ongData[0].projects.length > 0
-  ? [ongData[0].projects[0]]
-  : [];
+2
 
 
 export function Home() {
@@ -184,10 +182,10 @@ export function Home() {
                   })}
                 >
                   <ThemedText style={styles.projectAmount}>
-                    {t('home.projectTargetAmount', { amount: project.targetAmount.toLocaleString() })}
+                    {project.targetAmount.toLocaleString()}
                   </ThemedText>
                   <ThemedText style={styles.projectAmount}>
-                    {t('home.projectRaisedAmount', { amount: project.raisedAmount.toLocaleString() })}
+                    {project.raisedAmount.toLocaleString()}
                   </ThemedText>
                 </View>
                 <View
@@ -347,3 +345,23 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+const urgentProjects = [
+  {
+    id: 1,
+    name: 'Construcción de Escuela Rural',
+    image: 'https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg',
+    targetAmount: 50000,
+    raisedAmount: 35000,
+    progress: 70,
+    description: 'Proyecto para construir una escuela en zona rural que beneficiará a más de 200 niños.'
+  },
+  {
+    id: 3,
+    name: 'Centro de Rehabilitación',
+    image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg',
+    targetAmount: 75000,
+    raisedAmount: 30000,
+    progress: 40,
+    description: 'Centro de rehabilitación para personas con discapacidad física.'
+  }
+];
