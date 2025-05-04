@@ -71,7 +71,7 @@ export function Profile() {
         </View>
 
         <TouchableOpacity style={[styles.editButton]}>
-          <Ionicons name="pencil" size={20} color="white" />
+          <Ionicons name="pencil" size={20} color="#2196f3" /> {/* Cambia el color del icono a azul */}
           <ThemedText style={[styles.editButtonText]}>Editar Perfil</ThemedText>
         </TouchableOpacity>
       </ThemedView>
@@ -196,18 +196,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#2196f3', // Cambia el color a azul
+    backgroundColor: 'white', // Cambia el fondo a blanco
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 20,
-    alignSelf: 'center', // Centra el botón
+    alignSelf: 'center',
     marginTop: 10,
-  },
-  editButtonText: {
-    color: 'white', // Static color for button text
+    borderWidth: 1, // Añade un borde
+    borderColor: '#2196f3', // Color del borde azul
+},
+editButtonText: {
+    color: '#2196f3', // Cambia el color del texto a azul
     marginLeft: 5,
     fontWeight: 'bold',
-  },
+},
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
