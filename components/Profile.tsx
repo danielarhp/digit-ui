@@ -65,8 +65,8 @@ export function Profile() {
             style={styles.profileImage}
           />
           <View style={styles.userInfo}>
-            <ThemedText style={[styles.userName]}>{"Juan Pérez"}</ThemedText>
-            <ThemedText style={[styles.userBio]}>{"Comprometido con el cambio social"}</ThemedText>
+            <ThemedText style={[styles.userName]}>{"Digit User"}</ThemedText>
+            <ThemedText style={[styles.userBio]}>{"Transparent givin, Real impact"}</ThemedText>
           </View>
         </View>
 
