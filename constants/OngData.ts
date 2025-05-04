@@ -33,7 +33,7 @@ export const ongData: Ong[] = [
       {
         id: 1, // Asegúrate de que los IDs de proyecto sean únicos si es necesario
         name: 'Centro de Día Especializado',
-        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg', // Reemplazar con imagen relevante
+        image: 'https://i.postimg.cc/HsFB6cLD/Interior-c-lido-y-acogedor-de-un-centro-especializ.jpg', // Reemplazar con imagen relevante
         targetAmount: 80000,
         raisedAmount: 45000,
         progress: 56,
