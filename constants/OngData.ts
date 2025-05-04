@@ -31,13 +31,13 @@ export const ongData: Ong[] = [
     vision: 'Ser referentes en la lucha contra la soledad no deseada y el aislamiento social.',
     projects: [
       {
-        id: 1,
-        name: 'Construcción de Escuela Rural',
-        image: 'https://i.postimg.cc/15c5R6Ns/A-modern-welcoming-school-built-in-a-rural-area.jpg',
-        targetAmount: 50000,
-        raisedAmount: 35000,
-        progress: 70,
-        description: 'Proyecto para construir una escuela en zona rural que beneficiará a más de 200 niños.'
+        id: 1, // Asegúrate de que los IDs de proyecto sean únicos si es necesario
+        name: 'Centro de Día Especializado',
+        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg', // Reemplazar con imagen relevante
+        targetAmount: 80000,
+        raisedAmount: 45000,
+        progress: 56,
+        description: 'Centro de día para ofrecer terapias y actividades adaptadas a jóvenes con discapacidad múltiple.'
       }
     ],
     subscribers: 1200
@@ -51,13 +51,13 @@ export const ongData: Ong[] = [
     vision: 'Ser líderes en la promoción de la sostenibilidad y la conciencia ambiental.',
     projects: [
       {
-        id: 3,
-        name: 'Centro de Rehabilitación',
-        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg',
-        targetAmount: 75000,
-        raisedAmount: 30000,
-        progress: 40,
-        description: 'Centro de rehabilitación para personas con discapacidad física.'
+        id: 2,
+        name: 'Construcción de Escuela Rural',
+        image: 'https://i.postimg.cc/15c5R6Ns/A-modern-welcoming-school-built-in-a-rural-area.jpg',
+        targetAmount: 50000,
+        raisedAmount: 35000,
+        progress: 70,
+        description: 'Proyecto para construir una escuela en zona rural que beneficiará a más de 200 niños.'
       }
     ],
     subscribers: 800
@@ -71,13 +71,14 @@ export const ongData: Ong[] = [
     vision: 'Ser un centro de referencia en la atención a la discapacidad múltiple severa, promoviendo la inclusión y la mejora continua de la calidad de vida de los beneficiarios.',
     projects: [ // Puedes actualizar los proyectos si tienes la información correcta
       {
-        id: 3, // Asegúrate de que los IDs de proyecto sean únicos si es necesario
-        name: 'Centro de Día Especializado',
-        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg', // Reemplazar con imagen relevante
-        targetAmount: 80000,
-        raisedAmount: 45000,
-        progress: 56,
-        description: 'Centro de día para ofrecer terapias y actividades adaptadas a jóvenes con discapacidad múltiple.'
+        id: 3,
+        name: 'Centro de Rehabilitación',
+        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg',
+        targetAmount: 75000,
+        raisedAmount: 30000,
+        progress: 40,
+        description: 'Centro de rehabilitación para personas con discapacidad física.'
+        
       }
     ],
     subscribers: 950 // Puedes actualizar el número de suscriptores

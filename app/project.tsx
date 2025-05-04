@@ -11,7 +11,7 @@ import { ongData, Ong } from '../constants/OngData';
 // Array de proyectos (basado en urgentProjects de Home.tsx con detalles adicionales)
 const allProjects = [
   {
-    id: 1,
+    id: 2,
     name: 'Construcción de Escuela Rural',
     image: 'https://i.postimg.cc/15c5R6Ns/A-modern-welcoming-school-built-in-a-rural-area.jpg', // Añadido desde Home.tsx
     description: 'Este proyecto tiene como objetivo construir una escuela en una zona rural con acceso limitado a la educación. La escuela beneficiará a más de 200 niños y jóvenes de la comunidad.', // Mantenido/Añadido
@@ -23,25 +23,25 @@ const allProjects = [
     endDate: '2024-12-31', // Mantenido/Añadido
     volunteers: 45, // Mantenido/Añadido
     impact: 'Beneficiará a 200+ niños', // Mantenido/Añadido
-    ongId: 1, // Añadido para referencia
+    ongId: 2, // Añadido para referencia
   },
   {
-    id: 2,
-    name: 'Programa de Alimentación Infantil',
-    image: 'https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg', // Añadido desde Home.tsx
-    description: 'Iniciativa para asegurar la nutrición adecuada de niños en comunidades vulnerables, proporcionando comidas diarias y educación nutricional.', // Descripción de ejemplo
-    raisedAmount: 15000,
-    targetAmount: 25000,
-    progress: 60,
+    id: 3,
+        name: 'Centro de Rehabilitación',
+        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg',
+        targetAmount: 75000,
+        raisedAmount: 30000,
+        progress: 40,
+        description: 'Centro de rehabilitación para personas con discapacidad física.', // Añadir coma aquí
     location: 'Vallecas, Madrid', // Ejemplo
     startDate: '2024-03-01', // Ejemplo
     endDate: '2024-09-30', // Ejemplo
     volunteers: 30, // Ejemplo
     impact: 'Alimenta a 150+ niños diariamente', // Ejemplo
-    ongId: 2, // Ejemplo, asociar a Tacumi
+    ongId: 3, // Ejemplo, asociar a Tacumi
   },
   {
-    id: 3,
+    id: 1,
     name: 'Centro de día especializado',
     image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpghttps://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg', // Añadido desde Home.tsx
     description: 'Construcción y equipamiento de un centro para ofrecer terapias de rehabilitación física y ocupacional a personas con discapacidad.', // Descripción de ejemplo
@@ -53,7 +53,7 @@ const allProjects = [
     endDate: '2025-01-31', // Ejemplo
     volunteers: 60, // Ejemplo
     impact: 'Atenderá a 100+ pacientes al mes', // Ejemplo
-    ongId: 3, // Ejemplo, asociar a Fundación Lukas
+    ongId: 1, // Ejemplo, asociar a Fundación Lukas
   },
   { // Nuevo proyecto añadido
     id: 5,
