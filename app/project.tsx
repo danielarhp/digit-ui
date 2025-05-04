@@ -13,7 +13,7 @@ const allProjects = [
   {
     id: 1,
     name: 'Construcción de Escuela Rural',
-    image: 'https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg', // Añadido desde Home.tsx
+    image: 'https://i.postimg.cc/15c5R6Ns/A-modern-welcoming-school-built-in-a-rural-area.jpg', // Añadido desde Home.tsx
     description: 'Este proyecto tiene como objetivo construir una escuela en una zona rural con acceso limitado a la educación. La escuela beneficiará a más de 200 niños y jóvenes de la comunidad.', // Mantenido/Añadido
     raisedAmount: 35000,
     targetAmount: 50000,
@@ -42,8 +42,8 @@ const allProjects = [
   },
   {
     id: 3,
-    name: 'Centro de Rehabilitación',
-    image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg', // Añadido desde Home.tsx
+    name: 'Centro de día especializado',
+    image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpghttps://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg', // Añadido desde Home.tsx
     description: 'Construcción y equipamiento de un centro para ofrecer terapias de rehabilitación física y ocupacional a personas con discapacidad.', // Descripción de ejemplo
     raisedAmount: 30000,
     targetAmount: 75000,
@@ -57,8 +57,8 @@ const allProjects = [
   },
   { // Nuevo proyecto añadido
     id: 5,
-    name: 'Rehabilitación Forestal',
-    image: 'https://i.postimg.cc/pX5g7jJc/Mountain-landscape-with-pine-trees-and-a-clear-blue.jpg', // Imagen de ejemplo (relacionada con Alpe)
+    name: 'Reforestación alpina',
+    image: 'https://i.postimg.cc/FR4hQHs7/Paisaje-espectacular-de-monta-a-alpina-con-picos.jpg', // Imagen de ejemplo (relacionada con Alpe)
     description: 'Proyecto enfocado en la restauración de áreas forestales degradadas mediante la plantación de especies nativas y la mejora del suelo.',
     raisedAmount: 10000,
     targetAmount: 40000,
