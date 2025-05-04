@@ -159,6 +159,13 @@ const styles = StyleSheet.create({
   header: {
     // backgroundColor: colors.primary, // Cannot use 'colors' here
     padding: 20,
+    marginBottom: 0, // Reduce el margen inferior para disminuir el espacio
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10, // Reduce el padding vertical para disminuir el espacio
+    paddingHorizontal: 10,
   },
   profileInfo: {
     flexDirection: 'row',
@@ -189,12 +196,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: colors.tint, // Cannot use 'colors' here
+    backgroundColor: '#2196f3', // Cambia el color a azul
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 20,
-    alignSelf: 'flex-start', // Position button correctly
-    marginTop: 10, // Add some margin
+    alignSelf: 'center', // Centra el botón
+    marginTop: 10,
   },
   editButtonText: {
     color: 'white', // Static color for button text

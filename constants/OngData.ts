@@ -33,7 +33,7 @@ export const ongData: Ong[] = [
       {
         id: 1,
         name: 'Construcción de Escuela Rural',
-        image: 'https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg',
+        image: 'https://i.postimg.cc/15c5R6Ns/A-modern-welcoming-school-built-in-a-rural-area.jpg',
         targetAmount: 50000,
         raisedAmount: 35000,
         progress: 70,
@@ -53,7 +53,7 @@ export const ongData: Ong[] = [
       {
         id: 3,
         name: 'Centro de Rehabilitación',
-        image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg',
+        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg',
         targetAmount: 75000,
         raisedAmount: 30000,
         progress: 40,
@@ -73,7 +73,7 @@ export const ongData: Ong[] = [
       {
         id: 3, // Asegúrate de que los IDs de proyecto sean únicos si es necesario
         name: 'Centro de Día Especializado',
-        image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg', // Reemplazar con imagen relevante
+        image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpg', // Reemplazar con imagen relevante
         targetAmount: 80000,
         raisedAmount: 45000,
         progress: 56,
