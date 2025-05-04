@@ -92,18 +92,40 @@ export function Home() {
               activeOpacity={0.9}
               onPress={() => router.push(`/news?id=${newsItem._id}`)}
               accessibilityRole="button"
-              accessibilityLabel={t('home.newsAccessibilityLabel', { title: newsItem.title })} // Example translation
-              accessibilityHint={t('home.newsAccessibilityHint', { title: newsItem.title })} // Example translation
+              accessibilityLabel={t('home.newsAccessibilityLabel', { title: newsItem.title })}
+              accessibilityHint={t('home.newsAccessibilityHint', { title: newsItem.title })}
             >
-              <Image
-                source={{ uri: newsItem.image }}
-                style={styles.newsImage}
-                accessibilityRole="image"
-                accessibilityLabel={newsItem.title} // Keep title or use translation
-              />
-              <View style={styles.newsContent}>
-                <ThemedText style={styles.newsTitle}>{newsItem.title}</ThemedText>
-                <ThemedText style={styles.newsDescription}>{newsItem.description}</ThemedText>
+              <View style={{ position: 'relative' }}>
+                <Image
+                  source={{ uri: newsItem.image }}
+                  style={styles.newsImage}
+                  accessibilityRole="image"
+                  accessibilityLabel={newsItem.title}
+                />
+                <View style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)' // Fondo negro semitransparente
+                }} />
+                <View style={[styles.newsContent, { 
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: 12
+                }]}>
+                  <ThemedText style={[styles.newsTitle, { 
+                    color: 'white',
+                    backgroundColor: 'transparent'
+                  }]}>{newsItem.title}</ThemedText>
+                  <ThemedText style={[styles.newsDescription, { 
+                    color: 'white',
+                    backgroundColor: 'transparent'
+                  }]}>{newsItem.description}</ThemedText>
+                </View>
               </View>
             </TouchableOpacity>
           ))}
