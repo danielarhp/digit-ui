@@ -43,7 +43,7 @@ const allProjects = [
   {
     id: 1,
     name: 'Centro de día especializado',
-    image: 'https://i.postimg.cc/t4KP0F0y/A-modern-rehabilitation-center-under-construction.jpghttps://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg', // Añadido desde Home.tsx
+    image: 'https://i.postimg.cc/HsFB6cLD/Interior-c-lido-y-acogedor-de-un-centro-especializ.jpg', // Añadido desde Home.tsx
     description: 'Construcción y equipamiento de un centro para ofrecer terapias de rehabilitación física y ocupacional a personas con discapacidad.', // Descripción de ejemplo
     raisedAmount: 30000,
     targetAmount: 75000,

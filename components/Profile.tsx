@@ -24,22 +24,22 @@ interface Project {
 const mockProjects: Project[] = [
   {
     id: '1',
-    name: 'Educación para Todos',
-    organization: 'ONG Educativa',
+    name: 'Centro de día especializado', // Removed extra single quote
+    organization: 'Nadiesolo',
     amount: 1000,
     date: '2024-03-15',
-    image: 'https://i.postimg.cc/yxDDt4cy/Vibrant-diverse-classroom-of-the-future-students-1.jpg',
-    progress: 75,
-    category: 'Educación'
+    image: 'https://i.postimg.cc/HsFB6cLD/Interior-c-lido-y-acogedor-de-un-centro-especializ.jpg',
+    progress: 40,
+    category: 'Compañía'
   },
   {
-    id: '2',
-    name: 'Reforestación Urbana',
-    organization: 'EcoVida',
+    id: '5',
+    name: 'Reforestación Alpina',
+    organization: 'Fudación Alpe',
     amount: 500,
-    date: '2024-03-10',
-    image: 'https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg',
-    progress: 90,
+    date: '2024-07-10',
+    image: 'https://i.postimg.cc/FR4hQHs7/Paisaje-espectacular-de-monta-a-alpina-con-picos.jpg',
+    progress: 25,
     category: 'Medio Ambiente'
   }
 ];

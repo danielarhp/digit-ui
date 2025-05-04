@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
 });
 const urgentProjects = [
   {
-    id: 1,
+    id: 2, // Changed from 2s to 2
     name: 'Construcción de Escuela Rural',
     image: 'https://i.postimg.cc/T1sD3Yfs/Sustainable-low-cost-housing-project-in-a-developi.jpg',
     targetAmount: 50000,
