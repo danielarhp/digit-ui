@@ -48,7 +48,7 @@ export function Home() {
       },
       {
           "_id": "67d5bde697156aa043d99b02",
-          "title": "Nueva campaña de ayuda de Danela", // Corregido: Era Daniela
+          "title": "Nueva campaña de ayuda de Digit", // Corregido: Era Daniela
           "description": "Únete a nuestra nueva iniciativa para ayudar a las comunidades necesitadas",
           "image": "https://i.postimg.cc/x1zKqHk3/Paisaje-urbano-futurista-con-abundante-vegetaci-n.jpg",
           "__v": 0,

@@ -93,7 +93,7 @@ export const ongData: Ong[] = [
       {
         id: 5, // Nuevo ID de proyecto único
         name: 'Reforestación Alpina',
-        image: 'https://i.postimg.cc/pX5g7jJc/Mountain-landscape-with-pine-trees-and-a-clear-blue.jpg', // Imagen actualizada (ejemplo)
+        image: 'https://i.postimg.cc/FR4hQHs7/Paisaje-espectacular-de-monta-a-alpina-con-picos.jpg', // Imagen actualizada (ejemplo)
         targetAmount: 60000,
         raisedAmount: 20000,
         progress: 33,
